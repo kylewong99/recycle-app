@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "793344993579",
+    "project_id": "go-green-3620b",
+    "storage_bucket": "go-green-3620b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:793344993579:android:4343725432c6152473fd6e",
+        "android_client_info": {
+          "package_name": "com.example.recycleapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "793344993579-fmjerpjgs7kjnu15k6sof03741p1bof1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnxtSAwZZoCU7jPj3hboLl1IEjumdDiFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "793344993579-fmjerpjgs7kjnu15k6sof03741p1bof1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
