@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -40,17 +44,26 @@ import com.squareup.picasso.Picasso;
 
 public class LoginActivity extends AppCompatActivity {
 
+    // Google variables
     private static final int RC_SIGN_IN = 1;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     private Button signOutButton;
-    private TextView userEmail;
+    private TextView googleUserEmail;
+
+    // Facebook variables
     private CallbackManager mCallbackManager;
     private TextView facebookUserName;
     private ImageView facebookUserProfile;
     private LoginButton facebookLoginButton;
     private FirebaseAuth.AuthStateListener authStateListener;
     private AccessTokenTracker accessTokenTracker;
+
+    // Email and password variables
+    private EditText userEmail;
+    private EditText userPassword;
+    private Button login;
+    private Button register;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +71,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        FacebookSdk.sdkInitialize(getApplicationContext());
 
+        /***
+         * Google and Facebook
+         */
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
 
         facebookUserName = findViewById(R.id.facebook_user_name);
         facebookUserProfile = findViewById(R.id.facebook_user_profile);
-        userEmail = findViewById(R.id.user_email);
+        googleUserEmail = findViewById(R.id.google_user_email);
         signOutButton = findViewById(R.id.sign_out_button);
         facebookLoginButton = (LoginButton) findViewById(R.id.facebook_login_button);
         facebookLoginButton.setReadPermissions("email","public_profile");
@@ -102,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                googleSignIn();
             }
         });
 
@@ -112,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signOut();
                 Toast.makeText(LoginActivity.this,"You are Logged Out", Toast.LENGTH_SHORT).show();
                 signOutButton.setVisibility(View.INVISIBLE);
-                userEmail.setText("null");
+                googleUserEmail.setText("null");
 
                 // Google sign out
                 mGoogleSignInClient.signOut();
@@ -140,6 +158,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
+        /***
+         * Email and Password
+         */
+
+
+        userEmail = findViewById(R.id.user_email);
+        userPassword = findViewById(R.id.user_password);
+        login = findViewById(R.id.login);
+        register = findViewById(R.id.register);
+
+        register.setOnClickListener(view -> {
+            createUser();
+        });
+
+        login.setOnClickListener(view -> {
+            loginUser();
+        });
     }
 
     @Override
@@ -181,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void signIn() {
+    private void googleSignIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -233,26 +268,98 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    private void createUser() {
+        String email = userEmail.getText().toString();
+        String password = userPassword.getText().toString();
+
+        if(TextUtils.isEmpty(email)) {
+            userEmail.setError("Email cannot empty");
+            userEmail.requestFocus();
+        }else if (TextUtils.isEmpty(password)) {
+            userPassword.setError("Password cannot be empty");
+            userPassword.requestFocus();
+        }else {
+            mAuth.createUserWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d("", "createUserWithEmail:success");
+                                Toast.makeText(LoginActivity.this, "User Registered Successful.",
+                                        Toast.LENGTH_SHORT).show();
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("", "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(LoginActivity.this, "Registration Error: " +task.getException().getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+//                            updateUI(null);
+                            }
+                        }
+                    });
+        }
+    }
+
+    private void loginUser() {
+        String email = userEmail.getText().toString();
+        String password = userPassword.getText().toString();
+
+        if(TextUtils.isEmpty(email)) {
+            userEmail.setError("Email cannot empty");
+            userEmail.requestFocus();
+        }else if (TextUtils.isEmpty(password)) {
+            userPassword.setError("Password cannot be empty");
+            userPassword.requestFocus();
+        }else {
+            mAuth.signInWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d("", "loginUserWithEmail:success");
+                                Toast.makeText(LoginActivity.this, "User logged in successfully.",
+                                        Toast.LENGTH_SHORT).show();
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("", "loginUserWithEmail:failure", task.getException());
+                                Toast.makeText(LoginActivity.this, "Log in Error : " +task.getException().getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+//                            updateUI(null);
+                            }
+                        }
+                    });
+        }
+
+    }
+
+
     private void updateUI(FirebaseUser fUser) {
         signOutButton.setVisibility(View.VISIBLE);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
 
         if (fUser != null){
+            signOutButton.setVisibility(View.VISIBLE);
+
             String personName = fUser.getDisplayName();
             String personEmail = fUser.getEmail();
-            String photoUrl = fUser.getPhotoUrl().toString();
+//            String photoUrl = fUser.getPhotoUrl().toString();
             facebookUserName.setText(fUser.getDisplayName());
-            photoUrl = photoUrl + "?type=large";
-            Picasso.get().load(photoUrl).into(facebookUserProfile);
+//            photoUrl = photoUrl + "?type=large";
+//            Picasso.get().load(photoUrl).into(facebookUserProfile);
 
-            userEmail.setText(personEmail);
+            googleUserEmail.setText(personEmail);
 
             Toast.makeText(LoginActivity.this,personName + personEmail, Toast.LENGTH_SHORT).show();
         } else {
             signOutButton.setVisibility(View.INVISIBLE);
             facebookUserName.setText("No Facebook User");
             facebookUserProfile.setImageResource(R.drawable.com_facebook_favicon_blue);
-            userEmail.setText("null");
+            googleUserEmail.setText("null");
         }
 
     }
