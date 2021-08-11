@@ -4,8 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.2953125" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2726449275362319" />
+        <entry key="app/src/main/res/drawable/facebook_backgrounf.xml" value="0.2118421052631579" />
+        <entry key="app/src/main/res/drawable/facebook_btn_background.xml" value="0.2118421052631579" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login3.xml" value="0.23541666666666666" />
+        <entry key="app/src/main/res/layout/activity_login4.xml" value="0.22135416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2726449275362319" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.2969298245614035" />
       </map>
     </option>
   </component>

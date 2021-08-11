@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Recycle Application</string>
+    <string name="app_name">Go Green</string>
     <string name="facebook_app_id">357234239360462</string>
     <string name="fb_login_protocol_scheme">fb357234239360462</string>
+    <string name="create_account"><u>Create An Account</u></string>
+    <string name="back_to_login"><u>Back To Login</u></string>
 </resources>
