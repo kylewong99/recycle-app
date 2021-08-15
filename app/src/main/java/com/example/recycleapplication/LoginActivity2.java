@@ -144,17 +144,19 @@ public class LoginActivity2 extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.sendPasswordResetEmail(userEmail.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d("Reset Password", "Reset Email Sent");
-                                } else {
-                                    Log.d("Reset Password Fail", "Failed to send email");
-                                }
-                            }
-                        });
+//                mAuth.sendPasswordResetEmail(userEmail.getText().toString())
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    Log.d("Reset Password", "Reset Email Sent");
+//                                } else {
+//                                    Log.d("Reset Password Fail", "Failed to send email");
+//                                }
+//                            }
+//                        });
+                Intent intent = new Intent(LoginActivity2.this, ForgotPasswordActivity.class);
+                startActivity(intent);
             }
         });
 
