@@ -1,4 +1,4 @@
-package com.example.recycleapplication;
+package com.example.recycleapplication.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.recycleapplication.R;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.google.android.gms.tasks.OnCompleteListener;

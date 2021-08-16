@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <Button
         android:id="@+id/login_button"
@@ -14,6 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Go to login Page" />
+
+    <Button
+        android:id="@+id/home_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Home Page" />
 
     <TextView
         android:id="@+id/Title"

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/courses"
+        android:title="Courses"
+        android:icon="@drawable/ic_courses"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/quizzes"
+        android:title="Quizzes"
+        android:icon="@drawable/ic_quizzes"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/recycling"
+        android:title="Recycling"
+        android:icon="@drawable/ic_recycling"
+        android:enabled="true"/>
+
+    <item
+        android:id="@+id/account"
+        android:title="Account"
+        android:icon="@drawable/ic_account"
+        android:enabled="true"/>
+</menu>
