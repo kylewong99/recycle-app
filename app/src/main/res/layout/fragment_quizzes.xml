@@ -6,10 +6,21 @@
     android:background="@drawable/background9"
     tools:context=".fragments.QuizzesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Quizzes" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick Categories"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="70dp"
+        android:textSize="20sp">
+    </TextView>
+
+</RelativeLayout>
 
 </FrameLayout>

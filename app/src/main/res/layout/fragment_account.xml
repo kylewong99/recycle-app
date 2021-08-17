@@ -4,72 +4,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background7"
+    android:background="@drawable/background10"
     tools:context=".fragments.AccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Account" />
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="240dp"
+            android:src="@drawable/ic_profile">
+        </ImageView>
 
         <TextView
             android:id="@+id/username_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="350dp"
-            android:layout_marginLeft="50dp"
+            android:layout_below="@+id/profile"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:text="Username:" />
 
         <TextView
             android:id="@+id/et_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/username_label"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="350dp"
+            android:layout_below="@+id/profile"
+            android:layout_toRightOf="@+id/username_label"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:text="Username" />
 
         <TextView
             android:id="@+id/email_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/username_label"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
-
+            android:layout_below="@+id/username_label"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:text="Email:"/>
 
         <TextView
             android:id="@+id/et_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/username_label"
-            app:layout_constraintLeft_toLeftOf="@+id/email_label"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="100dp"
+            android:layout_below="@+id/username_label"
+            android:layout_toRightOf="@+id/email_label"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:text="Email"/>
-
 
         <Button
             android:id="@+id/sign_out_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/email_label"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="50dp"
-            android:text="Sign Out" />
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="80dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:text="LOGOUT" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 
 </FrameLayout>
