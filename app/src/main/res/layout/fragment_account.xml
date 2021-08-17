@@ -7,9 +7,60 @@
     tools:context=".fragments.AccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Account" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Account" />
+
+        <TextView
+            android:id="@+id/username_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="350dp"
+            android:text="Username:" />
+
+        <TextView
+            android:id="@+id/et_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/username_label"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="350dp"
+            android:text="Username" />
+
+        <TextView
+            android:id="@+id/email_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username_label"
+            android:layout_marginTop="50dp"
+            android:text="Email:"/>
+
+        <TextView
+            android:id="@+id/et_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/email_label"
+            android:layout_below="@+id/username_label"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="100dp"
+            android:text="Email"/>
+
+
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email_label"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:text="Sign Out" />
+
+    </RelativeLayout>
+
 
 </FrameLayout>

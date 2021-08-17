@@ -1,14 +1,26 @@
 package com.example.recycleapplication.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.recycleapplication.R;
+import com.example.recycleapplication.activity.HomeActivity;
+import com.example.recycleapplication.activity.LoginActivity2;
+import com.example.recycleapplication.activity.MainActivity;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +37,14 @@ public class AccountFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button signOutButton;
+
+    private TextView username;
+    private TextView email;
+
+    private String userName;
+    private String userEmail;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -52,8 +72,8 @@ public class AccountFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            userName = getArguments().getString("username");
+            userEmail = getArguments().getString("email");
         }
     }
 
@@ -62,5 +82,28 @@ public class AccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_account, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //initialize your view here for use view.findViewById("your view id")
+        signOutButton = (Button) view.findViewById(R.id.sign_out_button);
+        username = (TextView) view.findViewById(R.id.et_username);
+        email = (TextView) view.findViewById(R.id.et_email);
+
+        HomeActivity activity = (HomeActivity) getActivity();
+
+        username.setText(userName);
+        email.setText(userEmail);
+
+        signOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Sign OUT", "haha");
+                activity.signOut();
+            }
+        });
     }
 }

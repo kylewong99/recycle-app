@@ -309,10 +309,12 @@ public class LoginActivity2 extends AppCompatActivity {
             String personEmail = fUser.getEmail();
 
             Toast.makeText(LoginActivity2.this, personName + personEmail, Toast.LENGTH_SHORT).show();
-
+            Intent intent = new Intent(LoginActivity2.this, HomeActivity.class);
+            startActivity(intent);
             // Testing sign in
-            mAuth.signOut();
-            mGoogleSignInClient.signOut();
+//            mAuth.signOut();
+//            mGoogleSignInClient.signOut();
+
         }
     }
 
