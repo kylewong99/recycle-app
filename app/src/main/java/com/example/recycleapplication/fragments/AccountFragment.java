@@ -1,9 +1,7 @@
 package com.example.recycleapplication.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -15,12 +13,6 @@ import android.widget.TextView;
 
 import com.example.recycleapplication.R;
 import com.example.recycleapplication.activity.HomeActivity;
-import com.example.recycleapplication.activity.LoginActivity2;
-import com.example.recycleapplication.activity.MainActivity;
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.example.recycleapplication.R;
 import com.example.recycleapplication.fragments.AccountFragment;
@@ -16,14 +17,9 @@ import com.example.recycleapplication.fragments.QuizzesFragment;
 import com.example.recycleapplication.fragments.RecyclingFragment;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +30,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private AccessTokenTracker accessTokenTracker;
+    private GoogleSignInClient mGoogleSignInClient;
+    private Button googleSignInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +48,22 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null) {
                     Log.d("Go to Login", "Logout and go to login");
-                    Intent intent = new Intent(HomeActivity.this, LoginActivity2.class);
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
             }
@@ -70,7 +77,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 }
             }
         };
-
     }
 
     @Override
@@ -132,6 +138,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     public void signOut() {
         mAuth.signOut();
+        mGoogleSignInClient.signOut();
     }
 
 

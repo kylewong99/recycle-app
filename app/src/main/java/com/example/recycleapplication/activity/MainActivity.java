@@ -38,9 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
-                } else {
-                    Intent intent = new Intent(MainActivity.this, LoginActivity2.class);
-                    startActivity(intent);
                 }
             }
         };
@@ -54,29 +51,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        Button button = (Button) findViewById(R.id.login_button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapViewTest.class);
-                startActivity(intent);
-            }
-        });
-
-        Button button3 = (Button) findViewById(R.id.home_button);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
         Button button2 = (Button) findViewById(R.id.login_button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity2.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
