@@ -16,6 +16,12 @@ import com.example.recycleapplication.fragments.QuizzesFragment;
 import com.example.recycleapplication.fragments.RecyclingFragment;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -62,6 +68,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 }
             }
         };
+
     }
 
     @Override
@@ -124,5 +131,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public void signOut() {
         mAuth.signOut();
     }
+
 
 }
