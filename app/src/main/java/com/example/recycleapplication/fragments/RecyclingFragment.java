@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Looper;
 import android.util.Log;
@@ -100,6 +101,7 @@ public class RecyclingFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
     private EditText searchBar;
+    private RecyclerView dataList;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private boolean locationPermissionGranted;
     double currentLat = -33.8523341;
@@ -159,6 +161,8 @@ public class RecyclingFragment extends Fragment implements OnMapReadyCallback {
 
         // Create a new PlacesClient instance
         placesClient = Places.createClient(getActivity());
+
+        dataList = (RecyclerView) view.findViewById(R.id.data_list);
 
         // Initialize fused location provider client
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
