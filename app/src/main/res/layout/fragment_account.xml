@@ -41,6 +41,7 @@
             android:layout_toRightOf="@+id/username_label"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="80dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="15sp"
@@ -65,25 +66,27 @@
             android:layout_below="@+id/username_label"
             android:layout_toRightOf="@+id/email_label"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="80dp"
             android:layout_marginTop="30dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="15sp"
             android:text="Email"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sign_out_button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
+            android:background="@drawable/light_green_button_style"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="80dp"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
-            android:text="LOGOUT" />
+            android:layout_marginBottom="80dp"
+            android:text="LOGOUT"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

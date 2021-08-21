@@ -141,5 +141,4 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         mGoogleSignInClient.signOut();
     }
 
-
 }
