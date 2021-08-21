@@ -162,8 +162,6 @@ public class RecyclingFragment extends Fragment implements OnMapReadyCallback {
         // Create a new PlacesClient instance
         placesClient = Places.createClient(getActivity());
 
-        dataList = (RecyclerView) view.findViewById(R.id.data_list);
-
         // Initialize fused location provider client
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 

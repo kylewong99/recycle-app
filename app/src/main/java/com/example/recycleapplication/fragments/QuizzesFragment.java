@@ -27,7 +27,6 @@ public class QuizzesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     private RecyclerView catView;
@@ -37,14 +36,6 @@ public class QuizzesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        View view = inflater.inflate(R.layout.fragment_quizzes, container, false);
-//        catView = view.findViewById(R.id.cat_grid);
-//
-//        loadCategories();
-//
-//        CategoryAdapter adapter = new CategoryAdapter(catList);
-//        catView.setAdapter(adapter);
 
         return inflater.inflate(R.layout.fragment_quizzes, container, false);
     }
@@ -62,15 +53,14 @@ public class QuizzesFragment extends Fragment {
         titles.add("2");
         titles.add("3");
 
-        CategoryAdapter adapter = new CategoryAdapter(getActivity(),catList);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false);
+        CategoryAdapter adapter = new CategoryAdapter(getActivity(), catList);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         catView.setLayoutManager(gridLayoutManager);
         catView.setAdapter(adapter);
 
     }
 
-    private void loadCategories()
-    {
+    private void loadCategories() {
         catList.clear();
 
         catList.add(new CategoryModel("1", "Environmental Issues"));
