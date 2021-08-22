@@ -1,5 +1,6 @@
 package com.example.recycleapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,13 +21,17 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
-    List<CategoryModel> categoryModelList;
-    LayoutInflater inflater;
-    Context context;
+    private List<CategoryModel> categoryModelList;
+    private LayoutInflater inflater;
+    private Context context;
+    private HashMap<String, String> imgPath = new HashMap<String,String>();
+    private final int VERTICAL = 0;
+    private final int HORIZONTAL = 1;
 
     public CategoryAdapter(Context ctx, List<CategoryModel> categoryModelList) {
         this.categoryModelList = categoryModelList;
@@ -39,8 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view;
-        Log.d("viewtype",Integer.toString(viewType));
-        if (viewType == 0) {
+        if (viewType == VERTICAL) {
             view = inflater.inflate(R.layout.vertical_category_item_layout,parent,false);
             return new ViewHolder(view);
         } else {
@@ -58,6 +62,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             @Override
             public void onSuccess(Uri uri) {
                 String imgURL = uri.toString();
+                imgPath.put(Integer.toString(holder.getAdapterPosition()),imgURL);
                 Glide.with(context)
                         .load(imgURL)
                         .into(holder.image);
@@ -69,6 +74,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context.getApplicationContext(), StartQuizActivity.class);
+                intent.putExtra("title",holder.title.getText().toString());
+                intent.putExtra("imagePath",imgPath.get(Integer.toString(holder.getAdapterPosition())));
                 context.startActivity(intent);
                 Log.d("quizOnClick",holder.title.getText().toString());
             }
@@ -83,9 +90,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public int getItemViewType(int position) {
         if (categoryModelList.get(position).getViewType() == 0) {
-            return 0;
+            return VERTICAL;
         } else {
-            return 1;
+            return HORIZONTAL;
         }
     }
 
