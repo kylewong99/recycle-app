@@ -2,24 +2,29 @@ package com.example.recycleapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.recycleapplication.activity.StartQuizActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
     List<CategoryModel> categoryModelList;
-    List<String> titles;
     LayoutInflater inflater;
     Context context;
 
@@ -39,6 +44,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference mStorageReference = storage.getReference().child(categoryModelList.get(position).getImagePath());
+
+        mStorageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imgURL = uri.toString();
+                Glide.with(context)
+                        .load(imgURL)
+                        .into(holder.quizImage);
+            }
+        });
+
         holder.title.setText(categoryModelList.get(position).getTitle());
         holder.quizButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,12 +76,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
+        ImageView quizImage;
         CardView quizButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.quiz_title);
+            quizImage = itemView.findViewById(R.id.quiz_image);
             quizButton = itemView.findViewById(R.id.quiz_button);
         }
     }

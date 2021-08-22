@@ -2,20 +2,13 @@ package com.example.recycleapplication;
 
 public class CategoryModel {
 
-    private String quizId;
+
     private String title;
+    private String imagePath;
 
-    public CategoryModel(String quizId, String title) {
-        this.quizId = quizId;
+    public CategoryModel(String title, String imagePath) {
         this.title = title;
-    }
-
-    public String getQuizId() {
-        return quizId;
-    }
-
-    public void setQuizId(String quizId) {
-        this.quizId = quizId;
+        this.imagePath = imagePath;
     }
 
     public String getTitle() {
@@ -25,5 +18,11 @@ public class CategoryModel {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
 }

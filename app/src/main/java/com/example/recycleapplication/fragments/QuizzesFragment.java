@@ -3,10 +3,13 @@ package com.example.recycleapplication.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +21,16 @@ import com.example.recycleapplication.R;
 import com.example.recycleapplication.activity.HomeActivity;
 import com.example.recycleapplication.activity.LoginActivity;
 import com.example.recycleapplication.activity.StartQuizActivity;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class QuizzesFragment extends Fragment {
 
@@ -31,7 +41,6 @@ public class QuizzesFragment extends Fragment {
 
     private RecyclerView catView;
     public static List<CategoryModel> catList = new ArrayList<>();
-    private List<String> titles;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,30 +55,40 @@ public class QuizzesFragment extends Fragment {
 
         catView = (RecyclerView) view.findViewById(R.id.cat_grid);
 
-        loadCategories();
-        titles = new ArrayList<>();
+        // Access a Firestore instance from your Activity
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        titles.add("1");
-        titles.add("2");
-        titles.add("3");
+        //Getting realtime data from firestore
+        //Load quizzes data from firestore
+        db.collection("quizzes").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@NonNull QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.e("Error", "onEvent: ", e);
+                    return;
+                }
+                if (queryDocumentSnapshots != null) {
+                    catList.clear();
+                    Log.d("Firestore", "onEvent: ----------------------------------------" );
+                    List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+                    for (DocumentSnapshot snapshot : snapshotList) {
+                        Map<String, Object> item = snapshot.getData();
+                        String title = item.get("title").toString();
+                        String imagePath = item.get("image").toString();
+                        Log.d("Firestore data", "onEvent: " + title);
+                        catList.add(new CategoryModel(title,imagePath));
 
-        CategoryAdapter adapter = new CategoryAdapter(getActivity(), catList);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
-        catView.setLayoutManager(gridLayoutManager);
-        catView.setAdapter(adapter);
+                        CategoryAdapter adapter = new CategoryAdapter(getActivity(), catList);
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
+                        catView.setLayoutManager(gridLayoutManager);
+                        catView.setAdapter(adapter);
+                    }
+                } else {
+                    Log.e("Firestore", "onEvent: query snapshot was null");
+                }
+            }
+        });
 
     }
-
-    private void loadCategories() {
-        catList.clear();
-
-        catList.add(new CategoryModel("1", "Environmental Issues"));
-        catList.add(new CategoryModel("1", "Plastic Pollution"));
-        catList.add(new CategoryModel("1", "Environmental Issues"));
-        catList.add(new CategoryModel("1", "Environmental Issues"));
-        catList.add(new CategoryModel("1", "Environmental Issues"));
-        catList.add(new CategoryModel("1", "Environmental Issues"));
-    }
-
 
 }

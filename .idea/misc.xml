@@ -31,6 +31,7 @@
         <entry key="app/src/main/res/layout/fragment_courses.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/fragment_quizzes.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_quizzes_grid_layout.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/fragment_recycling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/quiz_category_item_layout.xml" value="0.25" />

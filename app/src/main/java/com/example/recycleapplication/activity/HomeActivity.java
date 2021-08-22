@@ -54,29 +54,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         //loading the default fragment
         loadFragment(new CoursesFragment());
 
-        // Access a Firestore instance from your Activity
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        //Getting realtime data from firestore
-        db.collection("quizzes").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@NonNull QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.e("Error", "onEvent: ", e);
-                    return;
-                }
-                if (queryDocumentSnapshots != null) {
-                    Log.d("Firestore", "onEvent: ----------------------------------------" );
-                    List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
-                    for (DocumentSnapshot snapshot : snapshotList) {
-                        Log.d("Firestore data", "onEvent: " + snapshot.getData());
-                    }
-                } else {
-                    Log.e("Firestore", "onEvent: query snapshot was null");
-                }
-            }
-        });
-
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnNavigationItemSelectedListener(this);
