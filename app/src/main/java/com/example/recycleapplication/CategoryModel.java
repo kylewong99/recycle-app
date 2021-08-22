@@ -5,10 +5,12 @@ public class CategoryModel {
 
     private String title;
     private String imagePath;
+    private int viewType;
 
-    public CategoryModel(String title, String imagePath) {
+    public CategoryModel(String title, String imagePath, int viewType) {
         this.title = title;
         this.imagePath = imagePath;
+        this.viewType = viewType;
     }
 
     public String getTitle() {
@@ -24,5 +26,9 @@ public class CategoryModel {
     }
 
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+
+    public int getViewType() { return viewType; }
+
+    public void setViewType(int viewType) { this.viewType = viewType; }
 
 }

@@ -5,7 +5,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +18,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.recycleapplication.CategoryAdapter;
+import com.example.recycleapplication.CategoryModel;
 import com.example.recycleapplication.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -25,6 +36,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +60,12 @@ public class CoursesFragment extends Fragment {
     private StorageReference mStorageReference;
 
     private String imgURL;
+
+    private RecyclerView popularCatView;
+    private RecyclerView allCoursesCatView;
+
+    public static List<CategoryModel> popularCatList = new ArrayList<>();
+    public static List<CategoryModel> allCoursesCatList = new ArrayList<>();
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -72,10 +92,8 @@ public class CoursesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
     }
 
     @Override
@@ -89,56 +107,50 @@ public class CoursesFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //
-        image = (ImageView) view.findViewById(R.id.test_image);
+        popularCatView = (RecyclerView) view.findViewById(R.id.popular_cat_grid);
+        allCoursesCatView = (RecyclerView) view.findViewById(R.id.all_courses_cat_grid);
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
+        // Access a Firestore instance from your Activity
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        mStorageReference = storage.getReference().child("quizzes/quiz2.png");
-
-        mStorageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        //Getting realtime data from firestore
+        //Load quizzes data from firestore
+        db.collection("courses").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(Uri uri) {
-                imgURL = uri.toString();
-                Glide.with(view.getContext())
-                        .load(imgURL)
-                        .into(image);
+            public void onEvent(@NonNull QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.e("Error", "onEvent: ", e);
+                    return;
+                }
+                if (queryDocumentSnapshots != null) {
+                    allCoursesCatList.clear();
+                    popularCatList.clear();
+
+                    Log.d("Firestore", "onEvent: ----------------------------------------" );
+                    List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
+                    for (DocumentSnapshot snapshot : snapshotList) {
+                        Map<String, Object> item = snapshot.getData();
+                        String title = item.get("title").toString();
+                        String imagePath = item.get("image").toString();
+                        Log.d("Firestore data", "onEvent: " + title);
+                        allCoursesCatList.add(new CategoryModel(title,imagePath,0));
+                        popularCatList.add(new CategoryModel(title,imagePath,1));
+
+                        CategoryAdapter adapter = new CategoryAdapter(getActivity(), allCoursesCatList);
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
+                        allCoursesCatView.setLayoutManager(gridLayoutManager);
+                        allCoursesCatView.setAdapter(adapter);
+
+                        adapter = new CategoryAdapter(getActivity(), popularCatList);
+                        gridLayoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
+                        popularCatView.setLayoutManager(gridLayoutManager);
+                        popularCatView.setAdapter(adapter);
+                    }
+                } else {
+                    Log.e("Firestore", "onEvent: query snapshot was null");
+                }
             }
         });
-
-//        Glide.with(view.getContext())
-//                .load("gs://go-green-3620b.appspot.com/quizzes/quiz2.png")
-//                .centerCrop()
-//                .placeholder(R.drawable.ic_launcher_foreground)
-//                .into(image);
-
-//        try {
-//            final File localFile = File.createTempFile("quiz1","jpg");
-//            mStorageReference.getFile(localFile)
-//                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                       @Override
-//                       public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                           Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-//                           image.setImageBitmap(bitmap);
-//                       }
-//                    });
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        mStorageReference = FirebaseStorage.getInstance().getReference().child("quizzes/quiz1.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//            @Override
-//            public void onSuccess(Uri uri) {
-//                Log.d("test", );
-//            }
-//        });
-
-//        Log.d("test", FirebaseStorage.getInstance().getReference().child("quizzes/quiz1.png").getDownloadUrl().toString());
-
-
-//        Picasso.get().load(mStorageReference.getDownloadUrl().toString()).into(image);
-
-
 
     }
 }

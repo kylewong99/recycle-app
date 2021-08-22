@@ -76,7 +76,7 @@ public class QuizzesFragment extends Fragment {
                         String title = item.get("title").toString();
                         String imagePath = item.get("image").toString();
                         Log.d("Firestore data", "onEvent: " + title);
-                        catList.add(new CategoryModel(title,imagePath));
+                        catList.add(new CategoryModel(title,imagePath,0));
 
                         CategoryAdapter adapter = new CategoryAdapter(getActivity(), catList);
                         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);

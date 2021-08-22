@@ -37,9 +37,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @NonNull
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.quiz_category_item_layout,parent,false);
 
-        return new ViewHolder(view);
+        View view;
+        Log.d("viewtype",Integer.toString(viewType));
+        if (viewType == 0) {
+            view = inflater.inflate(R.layout.vertical_category_item_layout,parent,false);
+            return new ViewHolder(view);
+        } else {
+            view = inflater.inflate(R.layout.horizontal_category_item_layout,parent,false);
+            return new ViewHolder(view);
+        }
     }
 
     @Override
@@ -53,12 +60,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 String imgURL = uri.toString();
                 Glide.with(context)
                         .load(imgURL)
-                        .into(holder.quizImage);
+                        .into(holder.image);
             }
         });
 
         holder.title.setText(categoryModelList.get(position).getTitle());
-        holder.quizButton.setOnClickListener(new View.OnClickListener() {
+        holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context.getApplicationContext(), StartQuizActivity.class);
@@ -73,18 +80,27 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return categoryModelList.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (categoryModelList.get(position).getViewType() == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
-        ImageView quizImage;
-        CardView quizButton;
+        ImageView image;
+        CardView button;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.quiz_title);
-            quizImage = itemView.findViewById(R.id.quiz_image);
-            quizButton = itemView.findViewById(R.id.quiz_button);
+            title = itemView.findViewById(R.id.title);
+            image = itemView.findViewById(R.id.image);
+            button = itemView.findViewById(R.id.button);
         }
     }
 }
