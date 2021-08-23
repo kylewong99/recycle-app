@@ -132,9 +132,10 @@ public class CoursesFragment extends Fragment {
                         Map<String, Object> item = snapshot.getData();
                         String title = item.get("title").toString();
                         String imagePath = item.get("image").toString();
+                        String id = item.get("id").toString();
                         Log.d("Firestore data", "onEvent: " + title);
-                        allCoursesCatList.add(new CategoryModel(title,imagePath,0));
-                        popularCatList.add(new CategoryModel(title,imagePath,1));
+                        allCoursesCatList.add(new CategoryModel(title,imagePath,id,0));
+                        popularCatList.add(new CategoryModel(title,imagePath,id,1));
 
                         CategoryAdapter adapter = new CategoryAdapter(getActivity(), allCoursesCatList);
                         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);

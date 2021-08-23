@@ -40,6 +40,7 @@
         <entry key="app/src/main/res/layout/fragment_recycling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/quiz_category_item_layout.xml" value="0.18181818181818182" />
+        <entry key="app/src/main/res/layout/vertical_category_item_layout.xml" value="0.2421875" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2838541666666667" />
       </map>
     </option>

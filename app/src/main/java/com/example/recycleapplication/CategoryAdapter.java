@@ -45,12 +45,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view;
         if (viewType == VERTICAL) {
-            view = inflater.inflate(R.layout.vertical_category_item_layout,parent,false);
+            View view = inflater.inflate(R.layout.vertical_category_item_layout,parent,false);
             return new ViewHolder(view);
         } else {
-            view = inflater.inflate(R.layout.horizontal_category_item_layout,parent,false);
+            View view = inflater.inflate(R.layout.horizontal_category_item_layout,parent,false);
             return new ViewHolder(view);
         }
     }
@@ -78,8 +77,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 Intent intent = new Intent(context.getApplicationContext(), StartQuizActivity.class);
                 intent.putExtra("title",holder.title.getText().toString());
                 intent.putExtra("imagePath",imgPath.get(Integer.toString(holder.getAdapterPosition())));
+                intent.putExtra("id",categoryModelList.get(holder.getAdapterPosition()).getId());
                 context.startActivity(intent);
-                Log.d("quizOnClick",holder.title.getText().toString());
             }
         });
     }
