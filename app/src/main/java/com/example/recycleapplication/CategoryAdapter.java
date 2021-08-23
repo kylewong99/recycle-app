@@ -16,6 +16,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.recycleapplication.activity.QuizQuestionsActivity;
+import com.example.recycleapplication.activity.QuizScoreActivity;
 import com.example.recycleapplication.activity.StartQuizActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;

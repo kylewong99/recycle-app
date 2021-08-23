@@ -13,8 +13,11 @@
         <entry key="app/src/main/res/drawable/grey_background.xml" value="0.31466666666666665" />
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.27291666666666664" />
         <entry key="app/src/main/res/drawable/light_green_button_style.xml" value="0.31466666666666665" />
+        <entry key="app/src/main/res/drawable/option_button_style.xml" value="0.31891891891891894" />
+        <entry key="app/src/main/res/drawable/options_button_style.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/drawable/relative_layout_background_style.xml" value="0.31466666666666665" />
         <entry key="app/src/main/res/drawable/round_corners_mask.xml" value="0.31466666666666665" />
+        <entry key="app/src/main/res/drawable/submit_button_style.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.2969298245614035" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
@@ -23,10 +26,11 @@
         <entry key="app/src/main/res/layout/activity_login4.xml" value="0.22135416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2726449275362319" />
         <entry key="app/src/main/res/layout/activity_map_view_test.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_quiz_questions.xml" value="0.3068568484598283" />
+        <entry key="app/src/main/res/layout/activity_quiz_score.xml" value="0.27355072463768115" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2969298245614035" />
         <entry key="app/src/main/res/layout/activity_start_quiz.xml" value="0.2927927927927928" />
         <entry key="app/src/main/res/layout/content_courses.xml" value="0.1526268115942029" />
-        <entry key="app/src/main/res/layout/course_popular_item_layout.xml" value="0.2453125" />
         <entry key="app/src/main/res/layout/custom_grid_layout_quizzes.xml" value="0.27418388543368827" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/fragment_courses.xml" value="0.1526268115942029" />
@@ -35,8 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_quizzes_grid_layout.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/fragment_recycling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1526268115942029" />
-        <entry key="app/src/main/res/layout/quiz_category_item_layout.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/test.xml" value="0.2453125" />
+        <entry key="app/src/main/res/layout/quiz_category_item_layout.xml" value="0.18181818181818182" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2838541666666667" />
       </map>
     </option>
