@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/drawable/options_button_style.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/drawable/relative_layout_background_style.xml" value="0.31466666666666665" />
         <entry key="app/src/main/res/drawable/round_corners_mask.xml" value="0.31466666666666665" />
+        <entry key="app/src/main/res/drawable/selected_option_button_style.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/drawable/submit_button_style.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.2969298245614035" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1526268115942029" />
@@ -25,6 +26,7 @@
         <entry key="app/src/main/res/layout/activity_login3.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/activity_login4.xml" value="0.22135416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2726449275362319" />
+        <entry key="app/src/main/res/layout/activity_map_test.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/activity_map_view_test.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_quiz_questions.xml" value="0.3068568484598283" />
         <entry key="app/src/main/res/layout/activity_quiz_score.xml" value="0.27355072463768115" />
@@ -39,6 +41,7 @@
         <entry key="app/src/main/res/layout/fragment_quizzes_grid_layout.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/fragment_recycling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1526268115942029" />
+        <entry key="app/src/main/res/layout/horizontal_category_item_layout.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/quiz_category_item_layout.xml" value="0.18181818181818182" />
         <entry key="app/src/main/res/layout/vertical_category_item_layout.xml" value="0.2421875" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2838541666666667" />

@@ -29,15 +29,14 @@
         android:text="1/10"></TextView>
 
     <TextView
-        android:id="@+id/time_remaining"
+        android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="10mins"
         android:layout_below="@+id/title"
-        android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp">
-    </TextView>
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:text="10mins"></TextView>
 
     <TextView
         android:id="@+id/question"

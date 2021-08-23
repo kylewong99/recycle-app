@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.recycleapplication.CategoryModel;
@@ -21,17 +23,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class QuizQuestionsActivity extends AppCompatActivity {
 
     private String id;
     private String quizTitle;
-    private int counter = 1;
+    private String selectedAnswer;
+    private int noQuestion = 1;
     private int totalQuestions;
+    private int noCorrectQuestion;
     private Button submitButton;
+    private TextView timer;
     private TextView title;
     private TextView questionNo;
     private TextView question;
@@ -39,13 +46,26 @@ public class QuizQuestionsActivity extends AppCompatActivity {
     private TextView optionB;
     private TextView optionC;
     private TextView optionD;
-    public static List<QuizQuestionModel> questionList = new ArrayList<>();
+    private RelativeLayout optionAbutton;
+    private RelativeLayout optionBbutton;
+    private RelativeLayout optionCbutton;
+    private RelativeLayout optionDbutton;
+
+    private static List<QuizQuestionModel> questionList = new ArrayList<>();
+    private static List<RelativeLayout> buttonList = new ArrayList<>();
+    private static List<TextView> optionList = new ArrayList<>();
+
+    private final int CHOSEN_A = 0;
+    private final int CHOSEN_B = 1;
+    private final int CHOSEN_C = 2;
+    private final int CHOSEN_D = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_questions);
 
+        timer = findViewById(R.id.timer);
         title = findViewById(R.id.title);
         questionNo = findViewById(R.id.no_of_questions);
         submitButton = findViewById(R.id.submit_button);
@@ -54,6 +74,10 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         optionB = findViewById(R.id.optionB);
         optionC = findViewById(R.id.optionC);
         optionD = findViewById(R.id.optionD);
+        optionAbutton = findViewById(R.id.optionA_box);
+        optionBbutton = findViewById(R.id.optionB_box);
+        optionCbutton = findViewById(R.id.optionC_box);
+        optionDbutton = findViewById(R.id.optionD_box);
 
         // Access a Firestore instance from your Activity
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -64,8 +88,22 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         id = intent.getExtras().getString("id");
         quizTitle = intent.getExtras().getString("title");
         title.setText(quizTitle);
+        timer.setText("");
 
-        Log.d("id",id);
+        selectedAnswer = "";
+        noCorrectQuestion = 0;
+        buttonList.clear();
+        optionList.clear();
+
+        buttonList.add(optionAbutton);
+        buttonList.add(optionBbutton);
+        buttonList.add(optionCbutton);
+        buttonList.add(optionDbutton);
+
+        optionList.add(optionA);
+        optionList.add(optionB);
+        optionList.add(optionC);
+        optionList.add(optionD);
 
         CollectionReference questionsRef = db.collection("quizzes").document(id).collection("questions");
 
@@ -74,7 +112,8 @@ public class QuizQuestionsActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     questionList.clear();
-                    for (QueryDocumentSnapshot document: task.getResult()) {
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
                         Map<String, Object> item = document.getData();
                         String question = item.get("question").toString();
                         String optionA = item.get("optionA").toString();
@@ -82,12 +121,25 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                         String optionC = item.get("optionC").toString();
                         String optionD = item.get("optionD").toString();
                         String answer = item.get("answer").toString();
-                        questionList.add(new QuizQuestionModel(quizTitle,question,optionA,optionB,optionC,optionD,answer));
+                        questionList.add(new QuizQuestionModel(quizTitle, question, optionA, optionB, optionC, optionD, answer));
                     }
-                    counter = 1;
+                    noQuestion = 1;
                     totalQuestions = questionList.size();
-                    questionNo.setText(Integer.toString(counter) + "/" + Integer.toString(totalQuestions));
+                    questionNo.setText(Integer.toString(noQuestion) + "/" + Integer.toString(totalQuestions));
                     displayQuestion();
+
+                    new CountDownTimer(36000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            timer.setText("Time Remaining: " + String.format("%02dm: %02ds", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
+                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) -
+                                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+                        }
+
+                        public void onFinish() {
+                            calculateScore();
+                        }
+                    }.start();
                 }
             }
         });
@@ -95,24 +147,99 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                counter += 1;
-                displayQuestion();
+                checkAnswer();
             }
         });
+
+        optionAbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayChosenAnswer(CHOSEN_A);
+            }
+        });
+
+        optionBbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayChosenAnswer(CHOSEN_B);
+            }
+        });
+
+        optionCbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayChosenAnswer(CHOSEN_C);
+            }
+        });
+
+        optionDbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayChosenAnswer(CHOSEN_D);
+            }
+        });
+
     }
 
     private void displayQuestion() {
-        if (counter <= totalQuestions) {
-            QuizQuestionModel questionInfo = questionList.get(counter-1);
-            questionNo.setText(Integer.toString(counter) + "/" + Integer.toString(totalQuestions));
+        if (noQuestion <= totalQuestions) {
+            removeChosenAnswer();
+            QuizQuestionModel questionInfo = questionList.get(noQuestion - 1);
+            questionNo.setText(Integer.toString(noQuestion) + "/" + Integer.toString(totalQuestions));
             question.setText(questionInfo.getQuestion());
             optionA.setText(questionInfo.getOptionA());
             optionB.setText(questionInfo.getOptionB());
             optionC.setText(questionInfo.getOptionC());
             optionD.setText(questionInfo.getOptionD());
         } else {
-            Log.d("questionEnd","End of questions");
+            Log.d("questionEnd", "End of questions");
+            calculateScore();
         }
+    }
+
+    private void displayChosenAnswer(int chosenAnswer) {
+        for (int i = 0; i < buttonList.size(); i++) {
+            if (i == chosenAnswer) {
+                selectedAnswer = optionList.get(i).getText().toString();
+                buttonList.get(i).setBackgroundResource(R.drawable.selected_option_button_style);
+            } else {
+                buttonList.get(i).setBackgroundResource(R.drawable.options_button_style);
+            }
+        }
+    }
+
+    private void removeChosenAnswer() {
+        for (int i = 0; i < buttonList.size(); i++) {
+            buttonList.get(i).setBackgroundResource(R.drawable.options_button_style);
+        }
+    }
+
+    private void checkAnswer() {
+        if (!selectedAnswer.isEmpty()) {
+            if (selectedAnswer.equals(questionList.get(noQuestion - 1).getAnswer())) {
+                noCorrectQuestion += 1;
+                Log.d("answer", "Correct Answer");
+            } else {
+                Log.d("answer", "Wrong Answer");
+            }
+            selectedAnswer = "";
+            noQuestion += 1;
+            displayQuestion();
+        } else {
+            Log.d("answer", "No Answer Selected");
+        }
+    }
+
+    private void calculateScore() {
+        Double score = ((noCorrectQuestion * 1.0) / (totalQuestions * 1.0)) * 100;
+        //Format score to two decimal points
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        Intent intent = new Intent(QuizQuestionsActivity.this, QuizScoreActivity.class);
+        intent.putExtra("score", df.format(score));
+        intent.putExtra("title", title.getText().toString());
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 
 }

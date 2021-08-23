@@ -19,8 +19,7 @@
         android:text="Example of Title Name"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold">
-    </TextView>
+        android:textStyle="bold"></TextView>
 
     <RelativeLayout
         android:id="@+id/outline"
@@ -69,13 +68,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/congrats_tv"
-                android:text="80% Score"
-                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="80% Score"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp">
-            </TextView>
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
 
             <TextView
                 android:id="@+id/text"
@@ -92,31 +90,31 @@
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/retake_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
             android:layout_below="@+id/container"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/light_green_button_style"
             android:text="RETAKE"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:background="@drawable/light_green_button_style">
-        </androidx.appcompat.widget.AppCompatButton>
+            android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
     </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/home_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_below="@+id/outline"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/light_green_button_style"
         android:text="CONTINUE PLAYING"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:background="@drawable/light_green_button_style">
-    </androidx.appcompat.widget.AppCompatButton>
+        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
 </RelativeLayout>
