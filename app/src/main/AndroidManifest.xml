@@ -27,6 +27,7 @@
             android:exported="true" />
         <activity
             android:name=".activity.HomeActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="true" />
         <activity
             android:name=".activity.ForgotPasswordActivity"
