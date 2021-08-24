@@ -46,7 +46,7 @@ public class QuizzesFragment extends Fragment {
     private RecyclerView catView;
     private EditText searchBar;
     public static List<CategoryModel> catList = new ArrayList<>();
-    public static List<CategoryModel> filterList = new ArrayList<>();
+    public static List<CategoryModel> filteredList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,13 +110,13 @@ public class QuizzesFragment extends Fragment {
                 if (searchBar.getText().toString().trim().length() == 0) {
                     displayQuiz(catList);
                 } else {
-                    filterList.clear();
+                    filteredList.clear();
                     for (int i = 0; i < catList.size(); i++) {
                         if (catList.get(i).getTitle().toLowerCase().contains(searchBar.getText().toString().toLowerCase())) {
-                            filterList.add(catList.get(i));
+                            filteredList.add(catList.get(i));
                         }
                     }
-                    displayQuiz(filterList);
+                    displayQuiz(filteredList);
                 }
             }
         });

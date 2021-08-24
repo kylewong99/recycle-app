@@ -85,6 +85,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 intent.putExtra("title",holder.title.getText().toString());
                 intent.putExtra("imagePath",imgPath.get(Integer.toString(holder.getAdapterPosition())));
                 intent.putExtra("id",categoryModelList.get(holder.getAdapterPosition()).getId());
+                Log.d("gooo","gooo");
                 context.startActivity(intent);
             }
         });

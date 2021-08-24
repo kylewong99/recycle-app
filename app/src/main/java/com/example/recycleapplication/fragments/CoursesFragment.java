@@ -11,11 +11,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.recycleapplication.CategoryAdapter;
@@ -61,13 +65,20 @@ public class CoursesFragment extends Fragment {
     private ImageView image;
     private StorageReference mStorageReference;
 
+    private EditText searchBar;
+
+    private TextView popularTitle;
+    private TextView coursesTitle;
+
     private String imgURL;
 
     private RecyclerView popularCatView;
     private RecyclerView allCoursesCatView;
+    private RecyclerView filterView;
 
     public static List<CategoryModel> popularCatList = new ArrayList<>();
     public static List<CategoryModel> allCoursesCatList = new ArrayList<>();
+    public static List<CategoryModel> filteredCatList = new ArrayList<>();
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -111,6 +122,10 @@ public class CoursesFragment extends Fragment {
 
         popularCatView = (RecyclerView) view.findViewById(R.id.popular_cat_grid);
         allCoursesCatView = (RecyclerView) view.findViewById(R.id.all_courses_cat_grid);
+        filterView = (RecyclerView) view.findViewById(R.id.filter_view);
+        searchBar = (EditText) view.findViewById(R.id.search_cat_bar);
+        popularTitle = (TextView) view.findViewById(R.id.most_popular_title);
+        coursesTitle = (TextView) view.findViewById(R.id.courses_title);
 
         // Access a Firestore instance from your Activity
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -139,22 +154,72 @@ public class CoursesFragment extends Fragment {
                         allCoursesCatList.add(new CategoryModel(title,imagePath,id,0));
                         popularCatList.add(new CategoryModel(title,imagePath,id,1));
                     }
-
-                    CategoryAdapter adapter = new CategoryAdapter(getActivity(), allCoursesCatList);
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
-                    allCoursesCatView.setLayoutManager(gridLayoutManager);
-                    allCoursesCatView.setAdapter(adapter);
-
-                    adapter = new CategoryAdapter(getActivity(), popularCatList);
-                    gridLayoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
-                    popularCatView.setLayoutManager(gridLayoutManager);
-                    popularCatView.setAdapter(adapter);
-
+                    displayCourse();
                 } else {
                     Log.e("Firestore", "onEvent: query snapshot was null");
                 }
             }
         });
 
+        searchBar.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (searchBar.getText().toString().trim().length() == 0) {
+                    displayCourse();
+                } else {
+                    filteredCatList.clear();
+                    for (int i = 0; i < allCoursesCatList.size(); i++) {
+                        if (allCoursesCatList.get(i).getTitle().toLowerCase().contains(searchBar.getText().toString().toLowerCase())) {
+                            filteredCatList.add(allCoursesCatList.get(i));
+                        }
+                    }
+                    displayFilteredCourse(filteredCatList);
+                }
+            }
+        });
+
     }
+
+    private void displayCourse() {
+        popularCatView.setVisibility(View.VISIBLE);
+        allCoursesCatView.setVisibility(View.VISIBLE);
+        filterView.setVisibility(View.GONE);
+        popularTitle.setVisibility(View.VISIBLE);
+        coursesTitle.setVisibility(View.VISIBLE);
+
+        CategoryAdapter adapter = new CategoryAdapter(getActivity(), allCoursesCatList);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
+        allCoursesCatView.setLayoutManager(gridLayoutManager);
+        allCoursesCatView.setAdapter(adapter);
+
+        adapter = new CategoryAdapter(getActivity(), popularCatList);
+        gridLayoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
+        popularCatView.setLayoutManager(gridLayoutManager);
+        popularCatView.setAdapter(adapter);
+    }
+
+    private void displayFilteredCourse(List<CategoryModel> filteredCatList) {
+        popularCatView.setVisibility(View.GONE);
+        allCoursesCatView.setVisibility(View.GONE);
+        popularTitle.setVisibility(View.GONE);
+        coursesTitle.setVisibility(View.GONE);
+        filterView.setVisibility(View.VISIBLE);
+        filterView.setTranslationZ(100);
+
+        CategoryAdapter adapter = new CategoryAdapter(getActivity(), filteredCatList);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
+        filterView.setLayoutManager(gridLayoutManager);
+        filterView.setAdapter(adapter);
+    }
+
 }
