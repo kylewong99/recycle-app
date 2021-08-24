@@ -3,6 +3,8 @@ package com.example.recycleapplication.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -34,6 +36,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
     private String id;
     private String quizTitle;
     private String selectedAnswer;
+    private CountDownTimer countDownTimer;
     private int noQuestion = 1;
     private int totalQuestions;
     private int noCorrectQuestion;
@@ -128,7 +131,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                     questionNo.setText(Integer.toString(noQuestion) + "/" + Integer.toString(totalQuestions));
                     displayQuestion();
 
-                    new CountDownTimer(36000, 1000) {
+                    countDownTimer = new CountDownTimer(36000, 1000) {
 
                         public void onTick(long millisUntilFinished) {
                             timer.setText("Time Remaining: " + String.format("%02dm: %02ds", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
@@ -139,7 +142,8 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                         public void onFinish() {
                             calculateScore();
                         }
-                    }.start();
+                    };
+                    countDownTimer.start();
                 }
             }
         });
@@ -231,6 +235,7 @@ public class QuizQuestionsActivity extends AppCompatActivity {
     }
 
     private void calculateScore() {
+        countDownTimer.cancel();
         Double score = ((noCorrectQuestion * 1.0) / (totalQuestions * 1.0)) * 100;
         //Format score to two decimal points
         DecimalFormat df = new DecimalFormat("0.00");
@@ -240,6 +245,21 @@ public class QuizQuestionsActivity extends AppCompatActivity {
         intent.putExtra("title", title.getText().toString());
         intent.putExtra("id", id);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Really Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        countDownTimer.cancel();
+                        QuizQuestionsActivity.super.onBackPressed();
+                    }
+                }).create().show();
     }
 
 }

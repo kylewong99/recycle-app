@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycleApplication">
         <activity
+            android:name=".activity.SelectCourseTopicActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.QuizScoreActivity"
             android:exported="true" />
         <activity

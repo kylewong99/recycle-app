@@ -31,8 +31,10 @@
         <entry key="app/src/main/res/layout/activity_quiz_questions.xml" value="0.3068568484598283" />
         <entry key="app/src/main/res/layout/activity_quiz_score.xml" value="0.27355072463768115" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2969298245614035" />
+        <entry key="app/src/main/res/layout/activity_select_course_topic.xml" value="0.2390625" />
         <entry key="app/src/main/res/layout/activity_start_quiz.xml" value="0.2927927927927928" />
         <entry key="app/src/main/res/layout/content_courses.xml" value="0.1526268115942029" />
+        <entry key="app/src/main/res/layout/course_titles_list_layout.xml" value="0.2390625" />
         <entry key="app/src/main/res/layout/custom_grid_layout_quizzes.xml" value="0.27418388543368827" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/fragment_courses.xml" value="0.1526268115942029" />

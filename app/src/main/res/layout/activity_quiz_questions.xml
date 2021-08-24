@@ -53,12 +53,13 @@
     <RelativeLayout
         android:id="@+id/optionA_box"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/question"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/options_button_style">
+        android:background="@drawable/options_button_style"
+        android:minHeight="40dp">
 
         <TextView
             android:id="@+id/optionA"
@@ -76,7 +77,8 @@
     <RelativeLayout
         android:id="@+id/optionB_box"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:layout_below="@+id/optionA_box"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
@@ -99,7 +101,8 @@
     <RelativeLayout
         android:id="@+id/optionC_box"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:layout_below="@+id/optionB_box"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
@@ -122,7 +125,8 @@
     <RelativeLayout
         android:id="@+id/optionD_box"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
         android:layout_below="@+id/optionC_box"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"

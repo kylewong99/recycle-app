@@ -19,6 +19,7 @@ public class StartQuizActivity extends AppCompatActivity {
     private TextView quizTitle;
     private ImageView quizImage;
     private Button startButton;
+    private Button cancelButton;
     private String id;
     private String title;
 
@@ -30,6 +31,7 @@ public class StartQuizActivity extends AppCompatActivity {
         quizTitle = findViewById(R.id.quiz_title);
         quizImage = findViewById(R.id.quiz_image);
         startButton = findViewById(R.id.start_button);
+        cancelButton = findViewById(R.id.cancel_button);
 
         //Get information of the selected quiz from QuizzesFragment
         Intent intent = getIntent();
@@ -52,6 +54,13 @@ public class StartQuizActivity extends AppCompatActivity {
                 intent.putExtra("title", title);
                 intent.putExtra("id",id);
                 startActivity(intent);
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StartQuizActivity.super.onBackPressed();
             }
         });
 

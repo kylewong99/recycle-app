@@ -21,6 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.recycleapplication.activity.QuizQuestionsActivity;
 import com.example.recycleapplication.activity.QuizScoreActivity;
+import com.example.recycleapplication.activity.SelectCourseTopicActivity;
 import com.example.recycleapplication.activity.StartQuizActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -81,11 +82,22 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context.getApplicationContext(), StartQuizActivity.class);
-                intent.putExtra("title",holder.title.getText().toString());
-                intent.putExtra("imagePath",imgPath.get(Integer.toString(holder.getAdapterPosition())));
-                intent.putExtra("id",categoryModelList.get(holder.getAdapterPosition()).getId());
-                Log.d("gooo","gooo");
+
+                String id = categoryModelList.get(holder.getAdapterPosition()).getId();
+                String title = holder.title.getText().toString();
+                String imagePath = imgPath.get(Integer.toString(holder.getAdapterPosition()));
+                Intent intent;
+
+                if (id.toLowerCase().contains("course")) {
+                    intent = new Intent(context.getApplicationContext(), SelectCourseTopicActivity.class);
+                } else {
+                    intent = new Intent(context.getApplicationContext(), StartQuizActivity.class);
+                }
+
+                intent.putExtra("title",title);
+                intent.putExtra("imagePath",imagePath);
+                intent.putExtra("id",id);
+
                 context.startActivity(intent);
             }
         });
