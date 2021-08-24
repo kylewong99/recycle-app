@@ -9,10 +9,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.GridView;
 
 import com.example.recycleapplication.CategoryAdapter;
@@ -21,6 +24,7 @@ import com.example.recycleapplication.R;
 import com.example.recycleapplication.activity.HomeActivity;
 import com.example.recycleapplication.activity.LoginActivity;
 import com.example.recycleapplication.activity.StartQuizActivity;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,7 +44,9 @@ public class QuizzesFragment extends Fragment {
     }
 
     private RecyclerView catView;
+    private EditText searchBar;
     public static List<CategoryModel> catList = new ArrayList<>();
+    public static List<CategoryModel> filterList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +60,7 @@ public class QuizzesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         catView = (RecyclerView) view.findViewById(R.id.cat_grid);
+        searchBar = (EditText) view.findViewById(R.id.search_cat_bar);
 
         // Access a Firestore instance from your Activity
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -69,6 +76,7 @@ public class QuizzesFragment extends Fragment {
                 }
                 if (queryDocumentSnapshots != null) {
                     catList.clear();
+
                     Log.d("Firestore", "onEvent: ----------------------------------------" );
                     List<DocumentSnapshot> snapshotList = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot snapshot : snapshotList) {
@@ -78,18 +86,48 @@ public class QuizzesFragment extends Fragment {
                         String id = item.get("id").toString();
                         Log.d("Firestore data", "onEvent: " + title);
                         catList.add(new CategoryModel(title,imagePath,id,0));
-
-                        CategoryAdapter adapter = new CategoryAdapter(getActivity(), catList);
-                        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
-                        catView.setLayoutManager(gridLayoutManager);
-                        catView.setAdapter(adapter);
                     }
+                    displayQuiz(catList);
                 } else {
                     Log.e("Firestore", "onEvent: query snapshot was null");
                 }
             }
         });
 
+        searchBar.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (searchBar.getText().toString().trim().length() == 0) {
+                    displayQuiz(catList);
+                } else {
+                    filterList.clear();
+                    for (int i = 0; i < catList.size(); i++) {
+                        if (catList.get(i).getTitle().toLowerCase().contains(searchBar.getText().toString().toLowerCase())) {
+                            filterList.add(catList.get(i));
+                        }
+                    }
+                    displayQuiz(filterList);
+                }
+            }
+        });
+
+    }
+
+    private void displayQuiz(List<CategoryModel> quiz) {
+        CategoryAdapter adapter = new CategoryAdapter(getActivity(), quiz);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
+        catView.setLayoutManager(gridLayoutManager);
+        catView.setAdapter(adapter);
     }
 
 }

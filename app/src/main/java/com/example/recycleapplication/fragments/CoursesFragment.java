@@ -21,7 +21,9 @@ import com.bumptech.glide.Glide;
 import com.example.recycleapplication.CategoryAdapter;
 import com.example.recycleapplication.CategoryModel;
 import com.example.recycleapplication.R;
+import com.example.recycleapplication.activity.HomeActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -136,17 +138,18 @@ public class CoursesFragment extends Fragment {
                         Log.d("Firestore data", "onEvent: " + title);
                         allCoursesCatList.add(new CategoryModel(title,imagePath,id,0));
                         popularCatList.add(new CategoryModel(title,imagePath,id,1));
-
-                        CategoryAdapter adapter = new CategoryAdapter(getActivity(), allCoursesCatList);
-                        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
-                        allCoursesCatView.setLayoutManager(gridLayoutManager);
-                        allCoursesCatView.setAdapter(adapter);
-
-                        adapter = new CategoryAdapter(getActivity(), popularCatList);
-                        gridLayoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
-                        popularCatView.setLayoutManager(gridLayoutManager);
-                        popularCatView.setAdapter(adapter);
                     }
+
+                    CategoryAdapter adapter = new CategoryAdapter(getActivity(), allCoursesCatList);
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
+                    allCoursesCatView.setLayoutManager(gridLayoutManager);
+                    allCoursesCatView.setAdapter(adapter);
+
+                    adapter = new CategoryAdapter(getActivity(), popularCatList);
+                    gridLayoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
+                    popularCatView.setLayoutManager(gridLayoutManager);
+                    popularCatView.setAdapter(adapter);
+
                 } else {
                     Log.e("Firestore", "onEvent: query snapshot was null");
                 }

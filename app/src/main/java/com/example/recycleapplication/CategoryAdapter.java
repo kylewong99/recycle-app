@@ -16,6 +16,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.MemoryCategory;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.recycleapplication.activity.QuizQuestionsActivity;
 import com.example.recycleapplication.activity.QuizScoreActivity;
 import com.example.recycleapplication.activity.StartQuizActivity;
@@ -64,8 +67,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             public void onSuccess(Uri uri) {
                 String imgURL = uri.toString();
                 imgPath.put(Integer.toString(holder.getAdapterPosition()),imgURL);
+                RequestOptions requestOptions = new RequestOptions();
+                requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
+                Glide.get(context).setMemoryCategory(MemoryCategory.HIGH);
                 Glide.with(context)
                         .load(imgURL)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(holder.image);
             }
         });
