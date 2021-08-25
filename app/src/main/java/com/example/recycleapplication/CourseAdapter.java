@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,12 +44,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText(courseTitleList.get(position).getTitle());
+        holder.button.setText(courseTitleList.get(position).getTitle());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("title","ID: " + courseTitleList.get(holder.getAdapterPosition()).getId() +
-                        " | Title: " + holder.title.getText().toString());
+                        " | Title: " + holder.button.getText().toString());
                 Intent intent = new Intent(context.getApplicationContext(), CourseTopicActivity.class);
                 intent.putExtra("courseID",courseID);
                 intent.putExtra("topicID",courseTitleList.get(holder.getAdapterPosition()).getId());
@@ -64,13 +65,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title;
-        ConstraintLayout button;
+        AppCompatButton button;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            title = itemView.findViewById(R.id.title);
             button = itemView.findViewById(R.id.button);
         }
     }
