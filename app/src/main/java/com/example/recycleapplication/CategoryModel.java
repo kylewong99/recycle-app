@@ -7,12 +7,21 @@ public class CategoryModel {
     private String imagePath;
     private String id;
     private int viewType;
+    private int noClicked;
 
     public CategoryModel(String title, String imagePath, String id, int viewType) {
         this.title = title;
         this.imagePath = imagePath;
         this.id = id;
         this.viewType = viewType;
+    }
+
+    public CategoryModel(String title, String imagePath, String id, int noClicked, int viewType) {
+        this.title = title;
+        this.imagePath = imagePath;
+        this.id = id;
+        this.viewType = viewType;
+        this.noClicked = noClicked;
     }
 
     public String getTitle() {
@@ -42,4 +51,11 @@ public class CategoryModel {
     }
 
 
+    public int getNoClicked() {
+        return noClicked;
+    }
+
+    public void setNoClicked(int noClicked) {
+        this.noClicked = noClicked;
+    }
 }

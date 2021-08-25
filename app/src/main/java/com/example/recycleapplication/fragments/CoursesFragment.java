@@ -43,6 +43,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -150,10 +152,29 @@ public class CoursesFragment extends Fragment {
                         String title = item.get("title").toString();
                         String imagePath = item.get("image").toString();
                         String id = item.get("id").toString();
+                        int noClicked = Integer.valueOf(item.get("clicked").toString());
                         Log.d("Firestore data", "onEvent: " + title);
-                        allCoursesCatList.add(new CategoryModel(title,imagePath,id,0));
-                        popularCatList.add(new CategoryModel(title,imagePath,id,1));
+                        allCoursesCatList.add(new CategoryModel(title,imagePath,id,noClicked,0));
                     }
+
+                    //Sort courses by number of clicked on descending order
+                    Comparator<CategoryModel> clickedComparator = (c1, c2) -> (int) (c1.getNoClicked() - c2.getNoClicked());
+                    allCoursesCatList.sort(Collections.reverseOrder(clickedComparator));
+                    for (int i = 0; i < allCoursesCatList.size(); i++) {
+                        if (i == 5) {
+                            break;
+                        }
+                        String title = allCoursesCatList.get(i).getTitle();
+                        String imagePath = allCoursesCatList.get(i).getImagePath();
+                        String id = allCoursesCatList.get(i).getId();
+                        int noClicked = allCoursesCatList.get(i).getNoClicked();
+                        popularCatList.add(new CategoryModel(title,imagePath,id,noClicked,1));
+                    }
+
+                    //Sort all courses by title on ascending order
+                    Comparator<CategoryModel> titleComparator = (c1, c2) -> c1.getTitle().compareTo(c2.getTitle());
+                    allCoursesCatList.sort(titleComparator);
+
                     displayCourse();
                 } else {
                     Log.e("Firestore", "onEvent: query snapshot was null");

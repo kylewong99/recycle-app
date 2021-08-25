@@ -24,6 +24,7 @@ import com.example.recycleapplication.activity.QuizScoreActivity;
 import com.example.recycleapplication.activity.SelectCourseTopicActivity;
 import com.example.recycleapplication.activity.StartQuizActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -88,7 +89,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 String imagePath = imgPath.get(Integer.toString(holder.getAdapterPosition()));
                 Intent intent;
 
+                // Access a Firestore instance from your Activity
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
                 if (id.toLowerCase().contains("course")) {
+                    int noClicked = categoryModelList.get(holder.getAdapterPosition()).getNoClicked();
+                    db.collection("courses").document(id).update("clicked",noClicked+1);
                     intent = new Intent(context.getApplicationContext(), SelectCourseTopicActivity.class);
                 } else {
                     intent = new Intent(context.getApplicationContext(), StartQuizActivity.class);
