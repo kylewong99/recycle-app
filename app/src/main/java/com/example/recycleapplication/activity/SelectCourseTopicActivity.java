@@ -31,7 +31,7 @@ import java.util.Map;
 public class SelectCourseTopicActivity extends AppCompatActivity {
 
     private String title;
-    private String id;
+    private String courseID;
     private ImageView courseImage;
     private TextView courseTitle;
     private List<CourseTitleModel> titleList = new ArrayList<>();
@@ -49,7 +49,7 @@ public class SelectCourseTopicActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         title = intent.getExtras().getString("title");
-        id = intent.getExtras().getString("id");
+        courseID = intent.getExtras().getString("id");
 
         courseTitle.setText(title);
         Glide.with(this)
@@ -61,7 +61,7 @@ public class SelectCourseTopicActivity extends AppCompatActivity {
 
         //Getting realtime data from firestore
         //Load quizzes data from firestore
-        db.collection("courses").document(id).collection("topics").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("courses").document(courseID).collection("topics").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@NonNull QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
@@ -80,7 +80,7 @@ public class SelectCourseTopicActivity extends AppCompatActivity {
                         Log.d("Firestore data", "onEvent: " + title);
                         titleList.add(new CourseTitleModel(id,title));
                     }
-                    displayCourse(titleList);
+                    displayCourse(titleList,courseID);
                 } else {
                     Log.e("Firestore", "onEvent: query snapshot was null");
                 }
@@ -89,8 +89,8 @@ public class SelectCourseTopicActivity extends AppCompatActivity {
 
     }
 
-    private void displayCourse(List<CourseTitleModel> course) {
-        CourseAdapter adapter = new CourseAdapter(this, course);
+    private void displayCourse(List<CourseTitleModel> course,String courseID) {
+        CourseAdapter adapter = new CourseAdapter(this, course, courseID);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
         courseTitlesListView.setLayoutManager(gridLayoutManager);
         courseTitlesListView.setAdapter(adapter);

@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecycleApplication">
         <activity
+            android:name=".activity.CourseTopicActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.SelectCourseTopicActivity"
             android:exported="true" />
         <activity
@@ -27,8 +30,8 @@
             android:exported="true" />
         <activity
             android:name=".activity.HomeActivity"
-            android:windowSoftInputMode="adjustNothing"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activity.ForgotPasswordActivity"
             android:exported="true" />

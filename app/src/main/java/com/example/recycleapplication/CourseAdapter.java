@@ -1,6 +1,7 @@
 package com.example.recycleapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recycleapplication.activity.CourseTopicActivity;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,11 +24,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     private List<CourseTitleModel> courseTitleList;
     private LayoutInflater inflater;
     private Context context;
+    private String courseID;
 
-    public CourseAdapter(Context ctx, List<CourseTitleModel> courseTitleList) {
+    public CourseAdapter(Context ctx, List<CourseTitleModel> courseTitleList, String courseID) {
         this.courseTitleList = courseTitleList;
         this.inflater = LayoutInflater.from(ctx);
         this.context = ctx;
+        this.courseID = courseID;
     }
 
 
@@ -44,6 +49,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
             public void onClick(View v) {
                 Log.d("title","ID: " + courseTitleList.get(holder.getAdapterPosition()).getId() +
                         " | Title: " + holder.title.getText().toString());
+                Intent intent = new Intent(context.getApplicationContext(), CourseTopicActivity.class);
+                intent.putExtra("courseID",courseID);
+                intent.putExtra("topicID",courseTitleList.get(holder.getAdapterPosition()).getId());
+                context.startActivity(intent);
             }
         });
     }
