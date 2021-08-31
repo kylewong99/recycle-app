@@ -92,7 +92,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 // Access a Firestore instance from your Activity
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                if (id.toLowerCase().contains("course")) {
+                if (imagePath.toLowerCase().contains("course")) {
                     int noClicked = categoryModelList.get(holder.getAdapterPosition()).getNoClicked();
                     db.collection("courses").document(id).update("clicked",noClicked+1);
                     intent = new Intent(context.getApplicationContext(), SelectCourseTopicActivity.class);

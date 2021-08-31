@@ -106,7 +106,6 @@ public class CourseTopicActivity extends AppCompatActivity {
                 TextView content = new TextView(CourseTopicActivity.this);
                 content.setText(item.get("content").toString());
                 linearLayout.addView(content);
-                Log.d("topic",imageList.get(1));
             }
         });
 
