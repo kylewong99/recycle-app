@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="1/10"></TextView>
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
         android:text="10mins"></TextView>
 
@@ -45,7 +45,7 @@
         android:layout_below="@+id/no_of_questions"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
         android:text="Example of quiz questions?"
         android:textColor="@color/black"></TextView>
@@ -81,7 +81,7 @@
         android:minHeight="40dp"
         android:layout_below="@+id/optionA_box"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/options_button_style">
 
@@ -105,7 +105,7 @@
         android:minHeight="40dp"
         android:layout_below="@+id/optionB_box"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/options_button_style">
 
@@ -129,7 +129,7 @@
         android:minHeight="40dp"
         android:layout_below="@+id/optionC_box"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/options_button_style">
 
@@ -151,9 +151,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/optionD_box"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/submit_button_style"
         android:text="Submit"
         android:textColor="@color/black"

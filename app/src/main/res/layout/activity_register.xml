@@ -113,8 +113,7 @@
         android:layout_below="@+id/tv_confirm_password"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="30dp"
-        android:inputType="textPassword"
-        android:layout_marginBottom="10dp">
+        android:inputType="textPassword">
     </EditText>
 
     <TextView
@@ -127,17 +126,19 @@
         android:text="@string/back_to_login">
     </TextView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/register_btn"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/back_to_login"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
         android:text="REGISTER"
+        android:background="@drawable/login_btn_style"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"></Button>
+        android:textSize="18sp"
+        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
 </RelativeLayout>

@@ -77,18 +77,19 @@
         android:text="Forgot Password?"
         android:textSize="15sp"></TextView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/forgot_password"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="30dp"
         android:text="LOGIN"
+        android:background="@drawable/login_btn_style"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"></Button>
+        android:textSize="18sp"
+        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
     <TextView
         android:id="@+id/create_account"
@@ -100,37 +101,38 @@
         android:text="@string/create_account">
     </TextView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/google_login_btn"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/create_account"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
-        android:backgroundTint="@color/red"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/google_btn_background"
         android:drawableLeft="@drawable/ic_google"
-        android:text="Login with Google"
+        android:paddingLeft="20dp"
+        android:text="GOOGLE SIGN IN"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"></Button>
+        android:textSize="18sp"
+        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/facebook_login_btn"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/google_login_btn"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
-        android:backgroundTint="@color/blue"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/facebook_btn_background"
         android:drawableLeft="@drawable/ic_facebook"
-        android:drawablePadding="20dp"
-        android:text="Login with Facebook"
+        android:paddingLeft="20dp"
+        android:text="FACEBOOK SIGN IN"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"></Button>
+        android:textSize="18sp"
+        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
 </RelativeLayout>

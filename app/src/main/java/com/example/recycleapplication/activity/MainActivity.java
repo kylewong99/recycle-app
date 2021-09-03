@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.recycleapplication.MapViewTest;
 import com.example.recycleapplication.R;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;

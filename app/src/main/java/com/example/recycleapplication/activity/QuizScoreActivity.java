@@ -44,6 +44,7 @@ public class QuizScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuizScoreActivity.this, HomeActivity.class);
+                intent.putExtra("selectFragment","quiz");
                 startActivity(intent);
             }
         });

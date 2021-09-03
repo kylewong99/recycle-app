@@ -56,6 +56,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private final Fragment recyclingFragment = new RecyclingFragment();
     private final Fragment accountFragment = new AccountFragment();
     private final FragmentManager fm = getSupportFragmentManager();
+    private String selectFragment;
     Fragment active = courseFragment;
     Bundle bundle = new Bundle();
 
@@ -63,6 +64,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Intent intent = getIntent();
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -80,6 +83,13 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         fm.beginTransaction().add(R.id.fragment_container,courseFragment,"1").commit();
 
         navigation.setOnNavigationItemSelectedListener(this);
+
+        try {
+            selectFragment = intent.getExtras().getString("selectFragment");
+            if (selectFragment != null && selectFragment.contains("quiz")) {
+                navigation.setSelectedItemId(R.id.quizzes);
+            }
+        } catch (Exception e) {}
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions

@@ -43,18 +43,19 @@
         android:layout_centerHorizontal="true">
     </TextView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_button2"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:backgroundTint="#B3E359"
-        android:textSize="20sp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/start_btn_style"
+        android:textSize="18sp"
         android:text="GET STARTED"
+        android:textStyle="bold"
         android:textAllCaps="true"
         android:textColor="@color/black" />
 

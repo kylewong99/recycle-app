@@ -105,6 +105,9 @@ public class CourseTopicActivity extends AppCompatActivity {
 
                 TextView content = new TextView(CourseTopicActivity.this);
                 content.setText(item.get("content").toString());
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lp.setMargins(0,0,0,100);
+                content.setLayoutParams(lp);
                 linearLayout.addView(content);
             }
         });
