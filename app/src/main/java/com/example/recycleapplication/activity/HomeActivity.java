@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.recycleapplication.CategoryModel;
 import com.example.recycleapplication.R;
@@ -50,6 +51,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private AccessTokenTracker accessTokenTracker;
     private GoogleSignInClient mGoogleSignInClient;
     private Button googleSignInButton;
+    private long pressedTime;
 
     private final Fragment courseFragment = new CoursesFragment();
     private final Fragment quizzesFragment = new QuizzesFragment();
@@ -166,6 +168,19 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public void signOut() {
         mAuth.signOut();
         mGoogleSignInClient.signOut();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (pressedTime + 2000 > System.currentTimeMillis()) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
+        } else {
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
     }
 
 }
