@@ -14,7 +14,8 @@
         android:layout_height="400dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -55,14 +56,23 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/highest_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/outline"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:text="Highest Score: 80%"
+        android:visibility="gone" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/start_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/outline"
+        android:layout_below="@+id/highest_score"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="40dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/light_green_button_style"
         android:backgroundTint="@color/light_green"

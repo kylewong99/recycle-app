@@ -28,6 +28,7 @@ import com.example.recycleapplication.R;
 import com.example.recycleapplication.activity.HomeActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -131,6 +132,8 @@ public class CoursesFragment extends Fragment {
 
         // Access a Firestore instance from your Activity
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
 
         //Getting realtime data from firestore
         //Load quizzes data from firestore
