@@ -17,5 +17,6 @@
     <color name="dark_grey">#CACACA</color>
     <color name="green3">#17C603</color>
     <color name="green4">#B3E359</color>
+    <color name="green_transparent">#F9FFFA</color>
 
 </resources>

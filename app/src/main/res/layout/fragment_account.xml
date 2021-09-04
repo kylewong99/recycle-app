@@ -15,12 +15,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="250dp"
-            android:layout_marginBottom="35dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="230dp"
             android:layout_marginRight="40dp"
-            android:background="@drawable/profile_background"
-            android:alpha="0.6">
+            android:layout_marginBottom="35dp"
+            android:alpha="0.6"
+            android:background="@drawable/profile_background">
         </RelativeLayout>
 
         <ImageView
@@ -28,7 +28,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="260dp"
             android:src="@drawable/ic_profile">
         </ImageView>
 
@@ -37,8 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="15sp"
@@ -51,7 +51,7 @@
             android:layout_below="@+id/profile"
             android:layout_toRightOf="@+id/username_label"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="80dp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -63,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/username_label"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="15sp"
@@ -78,11 +78,54 @@
             android:layout_toRightOf="@+id/email_label"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="80dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="15sp"
             android:text="Email"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/et_email"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/change_password_background"
+            android:alpha="0.3">
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/change_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/et_email"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp">
+
+            <TextView
+                android:id="@+id/tv_change_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Password"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+                android:layout_marginLeft="30dp">
+            </TextView>
+
+            <ImageView
+                android:id="@+id/next_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_next">
+            </ImageView>
+
+        </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sign_out_button"

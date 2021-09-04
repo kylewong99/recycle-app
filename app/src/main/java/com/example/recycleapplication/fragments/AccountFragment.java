@@ -1,5 +1,6 @@
 package com.example.recycleapplication.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.recycleapplication.R;
+import com.example.recycleapplication.activity.ChangePasswordActivity;
 import com.example.recycleapplication.activity.HomeActivity;
 
 /**
@@ -31,6 +34,8 @@ public class AccountFragment extends Fragment {
     private String mParam2;
 
     private Button signOutButton;
+
+    private RelativeLayout changePassword;
 
     private TextView username;
     private TextView email;
@@ -84,6 +89,7 @@ public class AccountFragment extends Fragment {
         signOutButton = (Button) view.findViewById(R.id.sign_out_button);
         username = (TextView) view.findViewById(R.id.et_username);
         email = (TextView) view.findViewById(R.id.et_email);
+        changePassword = (RelativeLayout) view.findViewById(R.id.change_password);
 
         HomeActivity activity = (HomeActivity) getActivity();
 
@@ -95,6 +101,15 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 Log.d("Sign OUT", "haha");
                 activity.signOut();
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
+                startActivity(intent);
             }
         });
     }
