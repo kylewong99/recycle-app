@@ -28,6 +28,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -35,8 +37,14 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -58,10 +66,15 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private TextView forgotPassword;
 
+    private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Access a Firestore instance from your Activity
+        db = FirebaseFirestore.getInstance();
 
         googleSignInButton = findViewById(R.id.google_login_btn);
         facebookLoginButton = findViewById(R.id.facebook_login_btn);
@@ -194,6 +207,29 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                                String userID = UUID.randomUUID().toString();
+                                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE, MMM dd, yyyy");
+                                LocalDateTime currentDate = LocalDateTime.now();
+
+                                Map<String, Object> userInfo = new HashMap<String, Object>();
+                                userInfo.put("createdDate", dtf.format(currentDate));
+                                userInfo.put("email", user.getEmail());
+                                userInfo.put("id", userID);
+                                userInfo.put("username", user.getDisplayName());
+
+                                db.collection("users").document(userID).set(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("Login", "First Time Login. Successfully add user data to database");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("Login", "Failed to add user data to database");
+                                    }
+                                });
+                            }
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -247,6 +283,29 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("SignInActivity", "signInWithCredential:success");
                             Toast.makeText(getApplicationContext(), "Sign In Successfully", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
+                            if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                                String userID = UUID.randomUUID().toString();
+                                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE, MMM dd, yyyy");
+                                LocalDateTime currentDate = LocalDateTime.now();
+
+                                Map<String, Object> userInfo = new HashMap<String, Object>();
+                                userInfo.put("createdDate", dtf.format(currentDate));
+                                userInfo.put("email", user.getEmail());
+                                userInfo.put("id", userID);
+                                userInfo.put("username", user.getDisplayName());
+
+                                db.collection("users").document(userID).set(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("Login", "First Time Login. Successfully add user data to database");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("Login", "Failed to add user data to database");
+                                            }
+                                        });
+                            }
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -261,14 +320,14 @@ public class LoginActivity extends AppCompatActivity {
         String email = userEmail.getText().toString();
         String password = userPassword.getText().toString();
 
-        if(TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email)) {
             userEmail.setError("Email cannot empty");
             userEmail.requestFocus();
-        }else if (TextUtils.isEmpty(password)) {
+        } else if (TextUtils.isEmpty(password)) {
             userPassword.setError("Password cannot be empty");
             userPassword.requestFocus();
-        }else {
-            mAuth.signInWithEmailAndPassword(email,password)
+        } else {
+            mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -277,12 +336,35 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d("", "loginUserWithEmail:success");
                                 Toast.makeText(LoginActivity.this, "User logged in successfully.",
                                         Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                                    String userID = UUID.randomUUID().toString();
+                                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE, MMM dd, yyyy");
+                                    LocalDateTime currentDate = LocalDateTime.now();
+
+                                    Map<String, Object> userInfo = new HashMap<String, Object>();
+                                    userInfo.put("createdDate", dtf.format(currentDate));
+                                    userInfo.put("email", user.getEmail());
+                                    userInfo.put("id", userID);
+                                    userInfo.put("username", user.getDisplayName());
+
+                                    db.collection("users").document(userID).set(userInfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d("Login", "First Time Login. Successfully add user data to database");
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w("Login", "Failed to add user data to database");
+                                        }
+                                    });
+                                }
+                                updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w("", "loginUserWithEmail:failure", task.getException());
-                                Toast.makeText(LoginActivity.this, "Log in Error : " +task.getException().getMessage(),
+                                Toast.makeText(LoginActivity.this, "Log in Error : " + task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
                             }
@@ -298,7 +380,7 @@ public class LoginActivity extends AppCompatActivity {
             String personName = fUser.getDisplayName();
             String personEmail = fUser.getEmail();
 
-            Toast.makeText(LoginActivity.this, personName + personEmail, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(LoginActivity.this, personName + " " + personEmail, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
 
