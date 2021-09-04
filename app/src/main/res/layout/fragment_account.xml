@@ -85,14 +85,15 @@
             android:text="Email"/>
 
         <RelativeLayout
+            android:id="@+id/change_password_background"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/et_email"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:background="@drawable/change_password_background"
-            android:alpha="0.3">
+            android:alpha="0.7">
         </RelativeLayout>
 
         <RelativeLayout
@@ -100,21 +101,20 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/et_email"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="40dp">
 
             <TextView
                 android:id="@+id/tv_change_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Change Password"
-                android:textSize="15sp"
-                android:textColor="@color/black"
                 android:layout_centerVertical="true"
-                android:textStyle="bold"
-                android:layout_marginLeft="30dp">
-            </TextView>
+                android:layout_marginLeft="30dp"
+                android:text="Change Password"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"></TextView>
 
             <ImageView
                 android:id="@+id/next_icon"
@@ -122,8 +122,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/ic_next">
-            </ImageView>
+                android:src="@drawable/ic_next"></ImageView>
 
         </RelativeLayout>
 

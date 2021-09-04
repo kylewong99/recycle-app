@@ -1,5 +1,7 @@
 package com.example.recycleapplication.fragments;
 
+import static android.view.View.GONE;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,6 +18,9 @@ import android.widget.TextView;
 import com.example.recycleapplication.R;
 import com.example.recycleapplication.activity.ChangePasswordActivity;
 import com.example.recycleapplication.activity.HomeActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,12 +41,15 @@ public class AccountFragment extends Fragment {
     private Button signOutButton;
 
     private RelativeLayout changePassword;
+    private RelativeLayout changePasswordBackground;
 
     private TextView username;
     private TextView email;
 
     private String userName;
     private String userEmail;
+
+    private FirebaseUser user;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -90,6 +98,21 @@ public class AccountFragment extends Fragment {
         username = (TextView) view.findViewById(R.id.et_username);
         email = (TextView) view.findViewById(R.id.et_email);
         changePassword = (RelativeLayout) view.findViewById(R.id.change_password);
+        changePasswordBackground = (RelativeLayout) view.findViewById(R.id.change_password_background);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String providerID = "";
+
+        for (UserInfo profile: user.getProviderData()) {
+            providerID = profile.getProviderId();
+        }
+
+        Log.d("accountType",providerID);
+
+        if (!providerID.equals("password")) {
+            changePassword.setVisibility(GONE);
+            changePasswordBackground.setVisibility(GONE);
+        }
 
         HomeActivity activity = (HomeActivity) getActivity();
 
