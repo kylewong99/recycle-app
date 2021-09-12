@@ -18,6 +18,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+
 public class QuizScoreActivity extends AppCompatActivity {
 
     private TextView title;
@@ -56,22 +61,40 @@ public class QuizScoreActivity extends AppCompatActivity {
 
         String userEmail = mAuth.getCurrentUser().getEmail();
 
-        db.collection("users").whereEqualTo("email",userEmail).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("users").whereEqualTo("email", userEmail).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String userID = document.getData().get("id").toString();
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE, MMM dd, yyyy HH:mm:ss");
+                        LocalDateTime currentDate = LocalDateTime.now();
+
                         try {
-                            String highestScore = document.getData().get(id + "score").toString();
+                            String highestScore = document.getData().get(id + "HighestScore").toString();
+                            Integer noAttempt = Integer.valueOf(document.getData().get(id + "NoAttempt").toString());
+
+                            db.collection("users").document(userID).update(id + "NoAttempt", String.valueOf(noAttempt + 1),
+                                    id + "Attempt" + String.valueOf(noAttempt + 1) + "DateTime", dtf.format(currentDate),
+                                    id + "Attempt" + String.valueOf(noAttempt + 1) + "Score", String.valueOf(score));
                             if (highestScore != null) {
                                 if (Double.valueOf(score) > Double.valueOf(highestScore)) {
-                                    db.collection("users").document(userID).update(id + "score", score);
+                                    db.collection("users").document(userID).update(id + "HighestScore", score);
                                 }
-                                Log.d("Result","New high score" + score);
+                                Log.d("Result", "New high score" + score);
                             }
                         } catch (Exception e) {
-                            db.collection("users").document(userID).update(id + "score", score);
+                            String attemptedQuiz;
+                            try {
+                                attemptedQuiz = document.getData().get("attemptedQuiz").toString();
+                                attemptedQuiz += ("|" + id + "-" + quizTitle);
+                            } catch (Exception err) {
+                                attemptedQuiz = (id + "-" + quizTitle);
+                            }
+
+                            db.collection("users").document(userID).update(id + "HighestScore", score, id + "NoAttempt", String.valueOf(1),
+                                    id + "Attempt1DateTime", dtf.format(currentDate), id + "Attempt1Score", String.valueOf(score),
+                                    "attemptedQuiz", attemptedQuiz);
                         }
                     }
                 } else {
@@ -84,7 +107,7 @@ public class QuizScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuizScoreActivity.this, HomeActivity.class);
-                intent.putExtra("selectFragment","quiz");
+                intent.putExtra("selectFragment", "quiz");
                 startActivity(intent);
             }
         });
@@ -93,8 +116,8 @@ public class QuizScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuizScoreActivity.this, QuizQuestionsActivity.class);
-                intent.putExtra("id",id);
-                intent.putExtra("title",quizTitle);
+                intent.putExtra("id", id);
+                intent.putExtra("title", quizTitle);
                 startActivity(intent);
             }
         });

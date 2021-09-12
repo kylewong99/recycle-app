@@ -20,8 +20,7 @@
             android:layout_marginRight="40dp"
             android:layout_marginBottom="35dp"
             android:alpha="0.6"
-            android:background="@drawable/profile_background">
-        </RelativeLayout>
+            android:background="@drawable/profile_background"></RelativeLayout>
 
         <ImageView
             android:id="@+id/profile"
@@ -39,10 +38,10 @@
             android:layout_below="@+id/profile"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="20dp"
+            android:text="Username:"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="15sp"
-            android:text="Username:" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/et_username"
@@ -89,12 +88,11 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/et_email"
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="50dp"
-            android:background="@drawable/change_password_background"
-            android:alpha="0.7">
-        </RelativeLayout>
+            android:alpha="0.7"
+            android:background="@drawable/change_password_background"></RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/change_password"
@@ -126,16 +124,58 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/dashboard_background"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/change_password_background"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/change_password_background"
+            android:alpha="0.7">
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/change_password"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="40dp">
+
+            <TextView
+                android:id="@+id/tv_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:text="Dashboard"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"></TextView>
+
+            <ImageView
+                android:id="@+id/dashboard_next_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_next"></ImageView>
+
+        </RelativeLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sign_out_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/light_green_button_style"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="70dp"
             android:layout_marginBottom="60dp"
+            android:background="@drawable/light_green_button_style"
             android:text="LOGOUT"
             android:textColor="@color/black"
             android:textSize="17sp"

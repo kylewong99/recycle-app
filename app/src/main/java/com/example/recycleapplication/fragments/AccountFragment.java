@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.recycleapplication.R;
 import com.example.recycleapplication.activity.ChangePasswordActivity;
 import com.example.recycleapplication.activity.HomeActivity;
+import com.example.recycleapplication.activity.QuizResultDashboardActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -42,6 +43,8 @@ public class AccountFragment extends Fragment {
 
     private RelativeLayout changePassword;
     private RelativeLayout changePasswordBackground;
+
+    private RelativeLayout dashboard;
 
     private TextView username;
     private TextView email;
@@ -99,6 +102,7 @@ public class AccountFragment extends Fragment {
         email = (TextView) view.findViewById(R.id.et_email);
         changePassword = (RelativeLayout) view.findViewById(R.id.change_password);
         changePasswordBackground = (RelativeLayout) view.findViewById(R.id.change_password_background);
+        dashboard = (RelativeLayout) view.findViewById(R.id.dashboard);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         String providerID = "";
@@ -135,5 +139,15 @@ public class AccountFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        dashboard.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), QuizResultDashboardActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

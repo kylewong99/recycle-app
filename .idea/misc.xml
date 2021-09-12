@@ -5,7 +5,6 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.2953125" />
         <entry key="../../Library/Android/sdk/platforms/android-30/data/res/drawable/editbox_background.xml" value="0.31466666666666665" />
-        <entry key="app/src/main/res/drawable/back_to_login_btn_style.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/drawable/cancel_button_style.xml" value="0.31466666666666665" />
         <entry key="app/src/main/res/drawable/category_title_style.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/drawable/change_password_background.xml" value="0.31891891891891894" />
@@ -40,6 +39,8 @@
         <entry key="app/src/main/res/layout/activity_map_test.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/activity_map_view_test.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_quiz_questions.xml" value="0.3068568484598283" />
+        <entry key="app/src/main/res/layout/activity_quiz_result.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/layout/activity_quiz_result_dashboard.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_quiz_score.xml" value="0.27355072463768115" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2969298245614035" />
         <entry key="app/src/main/res/layout/activity_select_course_topic.xml" value="0.2390625" />

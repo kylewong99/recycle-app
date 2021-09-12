@@ -70,7 +70,7 @@ public class StartQuizActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d("User", document.getId() + " => " + document.getData().get("email"));
                         try {
-                            String score = document.getData().get(id + "score").toString();
+                            String score = document.getData().get(id + "HighestScore").toString();
                             if (score != null) {
                                 highestScore.setVisibility(View.VISIBLE);
                                 highestScore.setText("Highest Score: " + score + " %");
