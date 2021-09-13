@@ -34,7 +34,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     private List<CategoryModel> categoryModelList;
     private LayoutInflater inflater;
     private Context context;
-    private HashMap<String, String> imgPath = new HashMap<String,String>();
+    private HashMap<String, String> imgPath = new HashMap<String, String>();
     private final int VERTICAL = 0;
     private final int HORIZONTAL = 1;
 
@@ -49,10 +49,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         if (viewType == VERTICAL) {
-            View view = inflater.inflate(R.layout.vertical_category_item_layout,parent,false);
+            View view = inflater.inflate(R.layout.vertical_category_item_layout, parent, false);
             return new ViewHolder(view);
         } else {
-            View view = inflater.inflate(R.layout.horizontal_category_item_layout,parent,false);
+            View view = inflater.inflate(R.layout.horizontal_category_item_layout, parent, false);
             return new ViewHolder(view);
         }
     }
@@ -66,7 +66,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             @Override
             public void onSuccess(Uri uri) {
                 String imgURL = uri.toString();
-                imgPath.put(Integer.toString(holder.getAdapterPosition()),imgURL);
+                imgPath.put(Integer.toString(holder.getAdapterPosition()), imgURL);
                 RequestOptions requestOptions = new RequestOptions();
                 requestOptions.diskCacheStrategy(DiskCacheStrategy.ALL);
                 Glide.get(context).setMemoryCategory(MemoryCategory.HIGH);
@@ -89,20 +89,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
                 // Access a Firestore instance from your Activity
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
+                try {
+                    if (imagePath.toLowerCase().contains("course")) {
+                        int noClicked = categoryModelList.get(holder.getAdapterPosition()).getNoClicked();
+                        db.collection("courses").document(id).update("clicked", noClicked + 1);
+                        intent = new Intent(context.getApplicationContext(), SelectCourseTopicActivity.class);
+                    } else {
+                        intent = new Intent(context.getApplicationContext(), StartQuizActivity.class);
+                    }
 
-                if (imagePath.toLowerCase().contains("course")) {
-                    int noClicked = categoryModelList.get(holder.getAdapterPosition()).getNoClicked();
-                    db.collection("courses").document(id).update("clicked",noClicked+1);
-                    intent = new Intent(context.getApplicationContext(), SelectCourseTopicActivity.class);
-                } else {
-                    intent = new Intent(context.getApplicationContext(), StartQuizActivity.class);
-                }
+                    intent.putExtra("title", title);
+                    intent.putExtra("imagePath", imagePath);
+                    intent.putExtra("id", id);
 
-                intent.putExtra("title",title);
-                intent.putExtra("imagePath",imagePath);
-                intent.putExtra("id",id);
-
-                context.startActivity(intent);
+                    context.startActivity(intent);
+                } catch (Exception e) {}
             }
         });
     }

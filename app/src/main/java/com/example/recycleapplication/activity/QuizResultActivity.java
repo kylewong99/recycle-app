@@ -1,11 +1,7 @@
 package com.example.recycleapplication.activity;
 
 import static android.graphics.Color.BLACK;
-import static android.graphics.Color.GREEN;
 import static android.view.Gravity.CENTER;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -22,6 +18,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.recycleapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,9 +28,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class QuizResultActivity extends AppCompatActivity {
 

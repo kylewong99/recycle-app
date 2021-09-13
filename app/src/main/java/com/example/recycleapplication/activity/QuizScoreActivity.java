@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.recycleapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -128,9 +129,19 @@ public class QuizScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(QuizScoreActivity.this, ShowQuizAnswerAcitvity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("title", quizTitle);
                 startActivity(intent);
             }
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(QuizScoreActivity.this, HomeActivity.class);
+        intent.putExtra("selectFragment", "quiz");
+        startActivity(intent);
+    }
+
 }

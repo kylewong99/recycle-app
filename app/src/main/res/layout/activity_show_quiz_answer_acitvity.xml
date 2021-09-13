@@ -44,7 +44,7 @@
         android:layout_marginBottom="40dp">
 
         <LinearLayout
-            android:id="@+id/quiz_result_list"
+            android:id="@+id/quiz_answer_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" />
