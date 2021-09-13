@@ -1,10 +1,8 @@
-package com.example.recycleapplication;
+package com.example.recycleapplication.Adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +17,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.MemoryCategory;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.recycleapplication.activity.QuizQuestionsActivity;
-import com.example.recycleapplication.activity.QuizScoreActivity;
+import com.example.recycleapplication.Model.CategoryModel;
+import com.example.recycleapplication.R;
 import com.example.recycleapplication.activity.SelectCourseTopicActivity;
 import com.example.recycleapplication.activity.StartQuizActivity;
 import com.google.android.gms.tasks.OnSuccessListener;

@@ -29,6 +29,7 @@ public class QuizScoreActivity extends AppCompatActivity {
     private TextView result;
     private AppCompatButton homeButton;
     private AppCompatButton retakeButton;
+    private AppCompatButton answerButton;
     private String score;
     private String id;
     private String quizTitle;
@@ -42,6 +43,7 @@ public class QuizScoreActivity extends AppCompatActivity {
         result = findViewById(R.id.score_tv);
         homeButton = findViewById(R.id.home_button);
         retakeButton = findViewById(R.id.retake_button);
+        answerButton = findViewById(R.id.answer_button);
 
         //Get information of the selected quiz
         Intent intent = getIntent();
@@ -118,6 +120,14 @@ public class QuizScoreActivity extends AppCompatActivity {
                 Intent intent = new Intent(QuizScoreActivity.this, QuizQuestionsActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("title", quizTitle);
+                startActivity(intent);
+            }
+        });
+
+        answerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QuizScoreActivity.this, ShowQuizAnswerAcitvity.class);
                 startActivity(intent);
             }
         });

@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/drawable/round_corners_mask.xml" value="0.31466666666666665" />
         <entry key="app/src/main/res/drawable/search_bar_background.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/drawable/selected_option_button_style.xml" value="0.25833333333333336" />
+        <entry key="app/src/main/res/drawable/show_answer_btn.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/drawable/start_btn_style.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/drawable/submit_button_style.xml" value="0.31891891891891894" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.3029891304347826" />
@@ -40,10 +41,11 @@
         <entry key="app/src/main/res/layout/activity_map_view_test.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_quiz_questions.xml" value="0.3068568484598283" />
         <entry key="app/src/main/res/layout/activity_quiz_result.xml" value="0.21510416666666668" />
-        <entry key="app/src/main/res/layout/activity_quiz_result_dashboard.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_quiz_result_dashboard.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_quiz_score.xml" value="0.27355072463768115" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2969298245614035" />
         <entry key="app/src/main/res/layout/activity_select_course_topic.xml" value="0.2390625" />
+        <entry key="app/src/main/res/layout/activity_show_quiz_answer_acitvity.xml" value="0.2875905797101449" />
         <entry key="app/src/main/res/layout/activity_start_quiz.xml" value="0.2927927927927928" />
         <entry key="app/src/main/res/layout/content_courses.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/course_titles_list_layout.xml" value="0.2390625" />
@@ -57,6 +59,7 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.1526268115942029" />
         <entry key="app/src/main/res/layout/horizontal_category_item_layout.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/quiz_category_item_layout.xml" value="0.18181818181818182" />
+        <entry key="app/src/main/res/layout/quiz_dashboard_background.xml" value="0.2875905797101449" />
         <entry key="app/src/main/res/layout/topic_image_layout.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/vertical_category_item_layout.xml" value="0.2421875" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2838541666666667" />

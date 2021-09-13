@@ -13,10 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.recycleapplication.CategoryAdapter;
-import com.example.recycleapplication.CategoryModel;
-import com.example.recycleapplication.CourseAdapter;
-import com.example.recycleapplication.CourseTitleModel;
+import com.example.recycleapplication.Adapter.CourseAdapter;
+import com.example.recycleapplication.Model.CourseTitleModel;
 import com.example.recycleapplication.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;

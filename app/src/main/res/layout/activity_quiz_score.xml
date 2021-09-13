@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:layout_marginRight="30dp"
         android:text="Example of Title Name"
         android:textColor="@color/black"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="130dp"
         android:layout_marginRight="30dp">
 
         <RelativeLayout
@@ -105,16 +105,32 @@
     </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/answer_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/outline"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/show_answer_btn"
+        android:text="SHOW ANSWER"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/home_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/outline"
+        android:layout_height="50dp"
+        android:layout_below="@+id/answer_button"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/light_green_button_style"
         android:text="CONTINUE PLAYING"
+        android:textSize="17sp"
         android:textColor="@color/black"
-        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+        android:textStyle="bold">
+    </androidx.appcompat.widget.AppCompatButton>
 
 </RelativeLayout>

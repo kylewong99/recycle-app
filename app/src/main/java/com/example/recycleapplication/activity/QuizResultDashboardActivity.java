@@ -7,12 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,24 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.MemoryCategory;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.recycleapplication.CategoryModel;
-import com.example.recycleapplication.QuizResultModel;
+import com.example.recycleapplication.Model.QuizResultModel;
 import com.example.recycleapplication.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.StorageReference;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,8 +73,8 @@ public class QuizResultDashboardActivity extends AppCompatActivity {
 
                         RelativeLayout quizBackground = new RelativeLayout(QuizResultDashboardActivity.this);
                         LinearLayout.LayoutParams lpQuizBackground = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        lpQuizBackground.setMargins(20,30,20,30);
-                        quizBackground.setMinimumHeight(120);
+                        lpQuizBackground.setMargins(20,10,20,30);
+                        quizBackground.setMinimumHeight(140);
                         quizBackground.setBackgroundResource(R.drawable.change_password_background);
                         quizBackground.setLayoutParams(lpQuizBackground);
 
@@ -100,6 +86,7 @@ public class QuizResultDashboardActivity extends AppCompatActivity {
                         rpNoCounter.addRule(RelativeLayout.CENTER_VERTICAL);
                         noCounter.setLayoutParams(rpNoCounter);
                         noCounter.setTextColor(BLACK);
+                        noCounter.setTypeface(Typeface.DEFAULT_BOLD);
                         noCounter.setText(counter.toString() + ".");
 
                         ImageView nextIcon = new ImageView(QuizResultDashboardActivity.this);
@@ -113,7 +100,8 @@ public class QuizResultDashboardActivity extends AppCompatActivity {
                         rpTitle.setMargins(15, 0, 0, 0);
                         title.setLayoutParams(rpTitle);
                         title.setTextColor(BLACK);
-                        title.setTextSize(20);
+                        title.setTypeface(Typeface.DEFAULT_BOLD);
+                        title.setTextSize(15);
                         title.setText(quizTitle);
 
                         RelativeLayout.LayoutParams rpIcon = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

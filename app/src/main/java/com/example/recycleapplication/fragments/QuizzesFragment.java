@@ -1,6 +1,5 @@
 package com.example.recycleapplication.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,15 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.GridView;
 
-import com.example.recycleapplication.CategoryAdapter;
-import com.example.recycleapplication.CategoryModel;
+import com.example.recycleapplication.Adapter.CategoryAdapter;
+import com.example.recycleapplication.Model.CategoryModel;
 import com.example.recycleapplication.R;
-import com.example.recycleapplication.activity.HomeActivity;
-import com.example.recycleapplication.activity.LoginActivity;
-import com.example.recycleapplication.activity.StartQuizActivity;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,8 +26,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 

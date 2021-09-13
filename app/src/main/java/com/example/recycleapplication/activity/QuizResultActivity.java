@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -85,21 +86,23 @@ public class QuizResultActivity extends AppCompatActivity {
                                 TextView noCounter = new TextView(QuizResultActivity.this);
                                 RelativeLayout.LayoutParams rpNoCounter = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                                 noCounter.setId(View.generateViewId());
-                                rpNoCounter.setMarginStart(20);
+                                rpNoCounter.setMargins(30, 20, 0, 0);
                                 rpNoCounter.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
                                 noCounter.setLayoutParams(rpNoCounter);
                                 noCounter.setTextColor(BLACK);
-                                noCounter.setTextSize(20);
+                                noCounter.setTextSize(15);
+                                noCounter.setTypeface(Typeface.DEFAULT_BOLD);
                                 noCounter.setText((i + 1) + ".");
 
                                 TextView dateTime = new TextView(QuizResultActivity.this);
                                 RelativeLayout.LayoutParams rpDateTime = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                                 dateTime.setId(View.generateViewId());
                                 rpDateTime.addRule(RelativeLayout.RIGHT_OF, noCounter.getId());
-                                rpDateTime.setMargins(30, 0, 0, 0);
+                                rpDateTime.setMargins(30, 20, 0, 0);
                                 dateTime.setLayoutParams(rpDateTime);
                                 dateTime.setTextColor(BLACK);
-                                dateTime.setTextSize(20);
+                                dateTime.setTypeface(Typeface.DEFAULT_BOLD);
+                                dateTime.setTextSize(15);
                                 dateTime.setText(attemptDateTime);
 
                                 TextView score = new TextView(QuizResultActivity.this);
@@ -115,7 +118,7 @@ public class QuizResultActivity extends AppCompatActivity {
                                 rpProgressBar.addRule(RelativeLayout.BELOW, dateTime.getId());
                                 progressBar.setLayoutParams(rpProgressBar);
                                 progressBar.setProgress((int) Double.parseDouble(attemptScore));
-                                progressBar.setProgressTintList(ColorStateList.valueOf(Color.rgb(154,205,50)));
+                                progressBar.setProgressTintList(ColorStateList.valueOf(Color.rgb(2,205,83)));
 
                                 RelativeLayout.LayoutParams rpScore = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                                 rpScore.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -123,7 +126,8 @@ public class QuizResultActivity extends AppCompatActivity {
                                 rpScore.setMarginEnd(20);
                                 score.setLayoutParams(rpScore);
                                 score.setTextColor(BLACK);
-                                score.setTextSize(20);
+                                score.setTypeface(Typeface.DEFAULT_BOLD);
+                                score.setTextSize(15);
                                 score.setText(attemptScore + " %");
 
                                 quizResultBackground.addView(noCounter);

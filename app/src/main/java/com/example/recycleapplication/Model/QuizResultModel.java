@@ -1,4 +1,4 @@
-package com.example.recycleapplication;
+package com.example.recycleapplication.Model;
 
 import java.util.ArrayList;
 import java.util.List;
