@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background7"
+    android:background="@drawable/background2"
     tools:context=".activity.ShowQuizAnswerAcitvity">
 
-    <LinearLayout
-        android:id="@+id/background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
-        android:alpha="0.7"
-        android:background="@drawable/profile_background"
-        android:orientation="vertical" />
+<!--    <LinearLayout-->
+<!--        android:id="@+id/background"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        android:alpha="0.7"-->
+<!--        android:background="@drawable/profile_background"-->
+<!--        android:orientation="vertical" />-->
 
     <TextView
         android:id="@+id/quiz_title"

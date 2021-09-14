@@ -32,9 +32,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.7"
-            android:background="@drawable/relative_layout_background_style">
-        </RelativeLayout>
+            android:alpha="0.6"
+            android:background="@drawable/relative_layout_background_style"></RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/container"
@@ -47,21 +46,19 @@
                 android:id="@+id/score_logo"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:src="@drawable/score"
-                android:layout_centerHorizontal="true">
-            </ImageView>
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/score"></ImageView>
 
             <TextView
                 android:id="@+id/congrats_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/score_logo"
-                android:text="Congrats!"
                 android:layout_centerHorizontal="true"
+                android:text="Congrats!"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="18sp">
-            </TextView>
+                android:textSize="18sp"
+                android:textStyle="bold"></TextView>
 
             <TextView
                 android:id="@+id/score_tv"
@@ -80,12 +77,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/score_tv"
-                android:text="Quiz completed successfully."
-                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Quiz completed successfully."
                 android:textColor="@color/black"
-                android:textSize="18sp">
-            </TextView>
+                android:textSize="18sp"></TextView>
 
         </RelativeLayout>
 

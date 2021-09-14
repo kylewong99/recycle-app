@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.5"
-            android:background="@drawable/relative_layout_background_style">
+            android:background="@drawable/start_quiz_background_style">
         </RelativeLayout>
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_below="@+id/quiz_title"
-            android:background="@drawable/relative_layout_background_style"
+            android:background="@drawable/start_quiz_background_style"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp">
 

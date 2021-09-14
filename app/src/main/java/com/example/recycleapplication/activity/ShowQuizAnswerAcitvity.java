@@ -72,7 +72,7 @@ public class ShowQuizAnswerAcitvity extends AppCompatActivity {
 
                         RelativeLayout questionAnswerBackground = new RelativeLayout(ShowQuizAnswerAcitvity.this);
                         LinearLayout.LayoutParams lpQuestionAnswerBackground = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        lpQuestionAnswerBackground.setMargins(20,30,20,30);
+                        lpQuestionAnswerBackground.setMargins(10,15,10,30);
                         questionAnswerBackground.setMinimumHeight(170);
                         questionAnswerBackground.setBackgroundResource(R.drawable.change_password_background);
                         questionAnswerBackground.setLayoutParams(lpQuestionAnswerBackground);
@@ -101,7 +101,7 @@ public class ShowQuizAnswerAcitvity extends AppCompatActivity {
 
                         TextView questionAnswer = new TextView(ShowQuizAnswerAcitvity.this);
                         RelativeLayout.LayoutParams rpQuestionAnswer = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        rpQuestionAnswer.setMargins(30,20,0,0);
+                        rpQuestionAnswer.setMargins(30,20,0,20);
                         rpQuestionAnswer.addRule(RelativeLayout.RIGHT_OF, noCounter.getId());
                         rpQuestionAnswer.addRule(RelativeLayout.BELOW, quizQuestion.getId());
                         questionAnswer.setLayoutParams(rpQuestionAnswer);
