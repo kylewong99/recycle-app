@@ -129,7 +129,8 @@ public class QuizQuestionsActivity extends AppCompatActivity {
                     questionNo.setText(Integer.toString(noQuestion) + "/" + Integer.toString(totalQuestions));
                     displayQuestion();
 
-                    countDownTimer = new CountDownTimer(36000, 1000) {
+
+                    countDownTimer = new CountDownTimer(30000 * questionList.size(), 1000) {
 
                         public void onTick(long millisUntilFinished) {
                             timer.setText("Time Remaining: " + String.format("%02dm: %02ds", TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished),
