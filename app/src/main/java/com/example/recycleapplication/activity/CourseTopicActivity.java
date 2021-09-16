@@ -103,6 +103,7 @@ public class CourseTopicActivity extends AppCompatActivity {
 
                 TextView content = new TextView(CourseTopicActivity.this);
                 content.setText(item.get("content").toString());
+                content.setTextColor(Color.BLACK);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 

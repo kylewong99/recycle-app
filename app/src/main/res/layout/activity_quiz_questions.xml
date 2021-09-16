@@ -26,6 +26,7 @@
         android:layout_below="@+id/title"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
+        android:textColor="@color/black"
         android:text="1/10"></TextView>
 
     <TextView
@@ -36,6 +37,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
+        android:textColor="@color/black"
         android:text="10mins"></TextView>
 
     <TextView

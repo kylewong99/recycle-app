@@ -41,6 +41,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:hint="Search"
+            android:textColorHint="@color/dark_grey"
+            android:textColor="@color/black"
             android:textSize="13sp" />
 
         <androidx.recyclerview.widget.RecyclerView

@@ -63,6 +63,7 @@
         android:layout_below="@id/outline"
         android:layout_centerInParent="true"
         android:layout_marginBottom="20dp"
+        android:textColor="@color/black"
         android:text="Highest Score: 80%"
         android:visibility="gone" />
 
@@ -90,7 +91,6 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/cancel_button_style"
         android:text="CANCEL"
         android:textColor="@color/black"
