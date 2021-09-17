@@ -172,6 +172,7 @@ public class RecyclingFragment extends Fragment implements OnMapReadyCallback {
             mapFragment = SupportMapFragment.newInstance();
             ft.replace(R.id.map, mapFragment).commit();
         }
+
         mapFragment.getMapAsync(this);
 
         searchBar = (EditText) view.findViewById(R.id.search_bar);
@@ -195,7 +196,6 @@ public class RecyclingFragment extends Fragment implements OnMapReadyCallback {
                 startActivityForResult(intent, 100);
             }
         });
-
     }
 
     @Override
@@ -232,18 +232,41 @@ public class RecyclingFragment extends Fragment implements OnMapReadyCallback {
             mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
                 @Override
                 public boolean onMyLocationButtonClick() {
-                    Location myLocation = mMap.getMyLocation();
-                    currentLat = myLocation.getLatitude();
-                    currentLong = myLocation.getLongitude();
-                    nearbySearch();
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                // Got last known location. In some rare situations this can be null.
+                                if (location != null) {
+                                    currentLat = location.getLatitude();
+                                    currentLong = location.getLongitude();
+                                    LatLng latLng = new LatLng(currentLat, currentLong);
+                                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                                    nearbySearch();
+                                }
+                            }
+                        });
+                    }
                     return false;
                 }
             });
             Log.d("location", "location");
         } else {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == 44) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                   mapFragment.getMapAsync(this);
+                }
+            }
+        }
     }
 
     public void nearbySearch() {

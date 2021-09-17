@@ -42,6 +42,7 @@
                 android:textColor="@color/black"
                 android:background="@color/places_text_white_alpha_87"
                 android:textSize="15sp"
+                android:maxLines="3"
                 android:textStyle="bold"></TextView>
 
         </LinearLayout>

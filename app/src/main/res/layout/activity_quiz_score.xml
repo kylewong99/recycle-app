@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,125 +7,136 @@
     android:background="@drawable/background3"
     tools:context=".activity.QuizScoreActivity">
 
-    <TextView
-        android:id="@+id/quiz_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="30dp"
-        android:text="Example of Title Name"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"></TextView>
-
-    <RelativeLayout
-        android:id="@+id/outline"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="130dp"
-        android:layout_marginRight="30dp">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0.6"
-            android:background="@drawable/relative_layout_background_style"></RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:id="@+id/score_logo"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/score"></ImageView>
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/congrats_tv"
+                android:id="@+id/quiz_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/score_logo"
                 android:layout_centerHorizontal="true"
-                android:text="Congrats!"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="30dp"
+                android:text="Example of Title Name"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"></TextView>
 
-            <TextView
-                android:id="@+id/score_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/congrats_tv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="80% Score"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"></TextView>
+            <RelativeLayout
+                android:id="@+id/outline"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="130dp"
+                android:layout_marginRight="30dp">
 
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/score_tv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="Quiz completed successfully."
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.6"
+                    android:background="@drawable/relative_layout_background_style"></RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/score_logo"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/score"></ImageView>
+
+                    <TextView
+                        android:id="@+id/congrats_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/score_logo"
+                        android:layout_centerHorizontal="true"
+                        android:text="Congrats!"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/score_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/congrats_tv"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="80% Score"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/score_tv"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Quiz completed successfully."
+                        android:textColor="@color/black"
+                        android:textSize="18sp"></TextView>
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/retake_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/container"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="60dp"
+                    android:background="@drawable/light_green_button_style"
+                    android:text="RETAKE"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/answer_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/outline"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/show_answer_btn"
+                android:text="SHOW ANSWER"
                 android:textColor="@color/black"
-                android:textSize="18sp"></TextView>
+                android:textSize="17sp"
+                android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/home_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/answer_button"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/light_green_button_style"
+                android:text="CONTINUE PLAYING"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
 
         </RelativeLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/retake_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/container"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="60dp"
-            android:background="@drawable/light_green_button_style"
-            android:text="RETAKE"
-            android:textColor="@color/black"
-            android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
-
-    </RelativeLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/answer_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/outline"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/show_answer_btn"
-        android:text="SHOW ANSWER"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/home_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/answer_button"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/light_green_button_style"
-        android:text="CONTINUE PLAYING"
-        android:textSize="17sp"
-        android:textColor="@color/black"
-        android:textStyle="bold">
-    </androidx.appcompat.widget.AppCompatButton>
+    </ScrollView>
 
 </RelativeLayout>

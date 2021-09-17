@@ -11,11 +11,11 @@
     <RelativeLayout
         android:id="@+id/outline"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="370dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="100dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,6 +34,7 @@
             android:text="Example of Title Name"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:maxLines="3"
             android:textStyle="bold"></TextView>
 
         <RelativeLayout
@@ -43,58 +44,79 @@
             android:layout_below="@+id/quiz_title"
             android:background="@drawable/start_quiz_background_style"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="30dp">
 
             <ImageView
                 android:id="@+id/quiz_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/example_quiz_image"></ImageView>
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/highest_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_container"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/black"
-            android:text="Highest Score: 80%"
-            android:visibility="gone" />
 
     </RelativeLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/start_button"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/outline"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/light_green_button_style"
-        android:backgroundTint="@color/light_green"
-        android:text="START"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/outline">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cancel_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/start_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/cancel_button_style"
-        android:text="CANCEL"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/highest_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/black"
+                    android:text="Highest Score: 80%"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/start_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/highest_score"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/light_green_button_style"
+                    android:backgroundTint="@color/light_green"
+                    android:text="START"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/cancel_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/start_button"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/cancel_button_style"
+                    android:text="CANCEL"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold"></androidx.appcompat.widget.AppCompatButton>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -120,8 +120,8 @@ public class AccountFragment extends Fragment {
 
         HomeActivity activity = (HomeActivity) getActivity();
 
-        username.setText(userName);
-        email.setText(userEmail);
+        username.setText(user.getDisplayName());
+        email.setText(user.getEmail());
 
         signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
