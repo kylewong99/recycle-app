@@ -44,7 +44,7 @@
         <entry key="app/src/main/res/layout/activity_quiz_questions.xml" value="0.3068568484598283" />
         <entry key="app/src/main/res/layout/activity_quiz_result.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/layout/activity_quiz_result_dashboard.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_quiz_score.xml" value="0.27355072463768115" />
+        <entry key="app/src/main/res/layout/activity_quiz_score.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.2969298245614035" />
         <entry key="app/src/main/res/layout/activity_select_course_topic.xml" value="0.2390625" />
         <entry key="app/src/main/res/layout/activity_show_quiz_answer_acitvity.xml" value="0.2875905797101449" />
