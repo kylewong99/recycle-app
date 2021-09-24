@@ -66,8 +66,10 @@ public class QuizResultActivity extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         try {
                             Integer noAttempt = Integer.valueOf(document.getData().get(quizID + "NoAttempt").toString());
+                            Integer counter = 0;
 
-                            for (int i = 0; i < noAttempt; i++) {
+                            for (int i = noAttempt - 1; i >= 0; i--) {
+                                counter += 1;
 
                                 String attemptDateTime = document.getData().get(quizID + "Attempt" + (i + 1) + "DateTime").toString();
                                 String attemptScore = document.getData().get(quizID + "Attempt" + (i + 1) + "Score").toString();
@@ -88,7 +90,7 @@ public class QuizResultActivity extends AppCompatActivity {
                                 noCounter.setTextColor(BLACK);
                                 noCounter.setTextSize(15);
                                 noCounter.setTypeface(Typeface.DEFAULT_BOLD);
-                                noCounter.setText((i + 1) + ".");
+                                noCounter.setText((counter) + ".");
 
                                 TextView dateTime = new TextView(QuizResultActivity.this);
                                 RelativeLayout.LayoutParams rpDateTime = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
