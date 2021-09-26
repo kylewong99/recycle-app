@@ -90,9 +90,9 @@ public class QuizScoreActivity extends AppCompatActivity {
                             String attemptedQuiz;
                             try {
                                 attemptedQuiz = document.getData().get("attemptedQuiz").toString();
-                                attemptedQuiz += ("|" + id + "-" + quizTitle);
+                                attemptedQuiz += ("|" + id);
                             } catch (Exception err) {
-                                attemptedQuiz = (id + "-" + quizTitle);
+                                attemptedQuiz = (id);
                             }
 
                             db.collection("users").document(userID).update(id + "HighestScore", score, id + "NoAttempt", String.valueOf(1),
